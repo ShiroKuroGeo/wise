@@ -1,0 +1,143 @@
+.center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    width: 300px;
+    height: fit-content;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.input-box {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    outline: 0.3mm solid rgba(0, 0, 0, 0.15);
+    border-radius: 2mm;
+    padding: 10px 15px;
+    font-family: poppins;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.input-box::before {
+    content: "expand_more";
+    font-family: "Material Icons";
+    position: absolute;
+    font-size: 18px;
+    top: 50%;
+    right: 15px;
+    transform: translate(0, -50%);
+    width: fit-content;
+    height: fit-content;
+}
+
+.input-box.open::before {
+    content: "expand_less";
+}
+
+.input-box:empty::after {
+    content: "Select Title";
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    background: white;
+    margin-top: 10px;
+    border-radius: 2mm;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    max-height: 0;
+    transition: 0.25s ease-out;
+}
+
+.list input {
+    display: none;
+}
+
+.list label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: poppins;
+    font-size: 14px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+}
+
+.list label .material-icons-outlined,
+.input-box .material-icons-outlined {
+    margin-right: 5px;
+    font-size: 22px;
+}
+
+.list label:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+input:checked+label {
+    color: rgb(20, 117, 213);
+    background: rgb(238, 245, 252);
+}
+
+input:checked+label::before {
+    content: "done";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(0, -50%);
+    font-size: 18px;
+}
+
+.open {
+    outline: 0.7mm solid rgb(20, 117, 213);
+}
+
+.title {
+    font-family: poppins;
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.search-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 8px;
+}
+
+#search {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 1mm;
+    border: none;
+    outline: 0.3mm solid rgba(0, 0, 0, 0.15);
+    font-family: poppins;
+}
+
+#search:focus {
+    outline: 0.5mm solid rgba(0, 0, 0, 0.35);
+}
