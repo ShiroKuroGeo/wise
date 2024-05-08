@@ -47,6 +47,11 @@ class dashboard
         return $this->getTotalPendingHumanByDayQuery();
     }
 
+    public function getAllYearLevel()
+    {
+        return $this->getAllYearLevelByDayQuery();
+    }
+
     public function getTotalPendingAccounting()
     {
         return $this->getTotalPendingAccountingByDayQuery();
@@ -152,10 +157,31 @@ class dashboard
         return $this->getTotalDoneSalesByMonthQuery();
     }
 
+    public function getAllDepartment()
+    {
+        return $this->getAllDepartmentQuery();
+    }
+
+    public function getAllAssigned()
+    {
+        return $this->getAllAssignedQuery();
+    }
+
+    public function getAllPriority()
+    {
+        return $this->getAllPriorityQuery();
+    }
+
+    public function getAllMonth()
+    {
+        return $this->getAllMonthQuery();
+    }
+
     public function getTotalPendingSalesByMonth()
     {
         return $this->getTotalPendingSalesByMonthQuery();
     }
+
 
     //Private
     private function getAllOrdersQuery()
@@ -413,7 +439,54 @@ class dashboard
             SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Sales Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
         ) AS addedStatus;";
     }
-    
+
+    private function getAllYearLevelByDayQuery()
+    {
+        return "SELECT DISTINCT year
+        FROM (
+            SELECT EXTRACT(YEAR FROM created_at) AS year FROM `request`
+            UNION
+            SELECT EXTRACT(YEAR FROM created_at) AS year FROM `order`
+        ) AS combined_years ORDER BY year desc;";
+    }
+
+    private function getAllMonthQuery()
+    {
+        return "SELECT DISTINCT month
+        FROM (
+            SELECT EXTRACT(month FROM created_at) AS month FROM `request`
+            UNION
+            SELECT EXTRACT(month FROM created_at) AS month FROM `order`
+        ) AS months ORDER BY month desc;";
+    }
+
+    private function getAllDepartmentQuery()
+    {
+        return "SELECT DISTINCT department
+        FROM (
+            SELECT department FROM `request`
+            UNION
+            SELECT department FROM `order`) AS combined_years ORDER BY department ASC;";
+    }
+
+    private function getAllAssignedQuery()
+    {
+        return "SELECT DISTINCT assigned
+        FROM (
+            SELECT assigned FROM `request`
+            UNION
+            SELECT assigned FROM `order`) AS combined_years ORDER BY assigned ASC;";
+    }
+
+    private function getAllPriorityQuery()
+    {
+        return "SELECT DISTINCT priority
+        FROM (
+            SELECT priority FROM `request`
+            UNION
+            SELECT priority FROM `order`) AS combined_years ORDER BY priority ASC;";
+    }
+
     private function getAllToResetRequestsQuery()
     {
         return "SELECT * FROM `request`";

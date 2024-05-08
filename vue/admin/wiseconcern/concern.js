@@ -9,10 +9,25 @@ const account = createApp({
             userPictureRequest: [],
             getTotalDepartmentRequest: [],
             userRequestInformations: [],
+            allSearchedUserConcern: [],
+            allYearLevel: [],
             userOrderInformations: [],
+            allSearchedUserJob: [],
+            allDeparment: [],
+            allAssigned: [],
+            allPriority: [],
+            departmentSearch: 'Documents Department',
+            statusSearch: 0,
+            assignedSearch: 'John Dizon',
+            prioritySearch: 'Hard',
+            monthSearch: 5,
+            yearSearch: 2024,
             totalPendingAdmin: 0,
+            selectionTable: 2,
             totalPendingDocumentation: 0,
             totalPendingHuman: 0,
+            countRequestSearch: 0,
+            countJobSearch: 0,
             totalPendingAccounting: 0,
             totalDoneAdmin: 0,
             totalDoneDocumentation: 0,
@@ -369,7 +384,6 @@ const account = createApp({
                     });
             }
         },
-
         getTotalPendingSalesByDay() {
             const vue = this;
 
@@ -450,9 +464,171 @@ const account = createApp({
                     });
             }
         },
+        getAllYearLevel() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllYearLevel");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allYearLevel = [];
+
+                    for (var v of r.data) {
+                        vue.allYearLevel.push({
+                            year: v.year
+                        });
+                    }
+                });
+        },
+        getAllDepartment() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllDepartment");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allDeparment = [];
+
+                    for (var v of r.data) {
+                        vue.allDeparment.push({
+                            department: v.department
+                        });
+                    }
+                });
+        },
+        getAllAssigned() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllAssigned");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allAssigned = [];
+
+                    for (var v of r.data) {
+                        vue.allAssigned.push({
+                            assigned: v.assigned
+                        });
+                    }
+                });
+        },
+        getAllPriority() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllPriority");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allPriority = [];
+
+                    for (var v of r.data) {
+                        vue.allPriority.push({
+                            priority: v.priority
+                        });
+                    }
+                });
+        },
+        getAllMonth() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllMonth");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allMonth = [];
+
+                    for (var v of r.data) {
+                        vue.allMonth.push({
+                            month: v.month
+                        });
+                    }
+                });
+        },
+        monthToString(monthNumber) {
+            const monthNames = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+            return monthNames[monthNumber - 1];
+        },
+        searchThisDataRequest() {
+            
+
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllSearchedUserConcern");
+            data.append("department", vue.departmentSearch);
+            data.append("assigned", vue.assignedSearch);
+            data.append("status", vue.statusSearch);
+            data.append("priority", vue.prioritySearch);
+            data.append("month", vue.monthSearch);
+            data.append("year", vue.yearSearch);
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allSearchedUserConcern = [];
+                    vue.countRequestSearch = r.data.length;
+
+                    for (var v of r.data) {
+                        vue.allSearchedUserConcern.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        });
+                    }
+                });
+        },
+        searchThisDataOrder() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllSearchedUserJob");
+            data.append("department", vue.departmentSearch);
+            data.append("assigned", vue.assignedSearch);
+            data.append("status", vue.statusSearch);
+            data.append("priority", vue.prioritySearch);
+            data.append("month", vue.monthSearch);
+            data.append("year", vue.yearSearch);
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allSearchedUserJob = [];
+                    vue.countJobSearch = r.data.length;
+                    
+                    for (var v of r.data) { 
+                        vue.allSearchedUserJob.push({
+                            order_id: v.order_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            deadline: v.deadline,
+                            description: v.description,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        });
+                    }
+                });
+        },
         resetFunction() {
             this.getDepartment();
+            this.getAllMonth();
+            this.getAllYearLevel();
             this.getDepartmentOrder();
+            this.getAllAssigned();
+            this.getAllDepartment();
+            this.getAllPriority();
             this.getDepartmentRequest();
             this.getTotalPendingAdmin();
             this.getTotalPendingDocumentation();

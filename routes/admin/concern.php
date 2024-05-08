@@ -39,3 +39,14 @@ function getAllUserOrder()
     $admin = new concernController();
     echo $admin->getAllUserOrder($_POST['id']);
 }
+
+function getAllSearchedUserConcern()
+{
+    $admin = new concernController();
+    echo $admin->getAllSearchedUserConcern($_POST['department'], $_POST['assigned'], $_POST['status'], $_POST['priority'], $_POST['month'], $_POST['year']);
+}
+function getAllSearchedUserJob()
+{
+    $admin = new concernController();
+    echo $admin->getAllSearchedUserJob($_POST['department'], $_POST['assigned'], $_POST['status'], $_POST['priority'], $_POST['month'], $_POST['year']);
+}

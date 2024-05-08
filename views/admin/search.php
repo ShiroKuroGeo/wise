@@ -97,7 +97,7 @@
                                 <div class="menu-text">Users Account</div>
                             </a>
                         </div>
-                        <div class="menu-item has-sub active">
+                        <div class="menu-item has-sub">
                             <a href="javascript:;" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-building"></i>
@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-item py-1">
+                        <div class="menu-item py-1 active">
                             <a href="search.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-users" aria-hidden="true"></i>
@@ -222,20 +222,64 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <h1 class="page-header"><span class="fw-bolder text-capitalize"><?php echo $_GET['department000'] ?></span> <small> Tables </small></h1>
-                    <div class="col-2">
-                        <select name="selection" id="selection" class="form-control ">
-                            <option value="2">Concern</option>
-                            <option value="1">Job Order</option>
-                        </select>
+                    <h1 class="page-header"><span class="fw-bolder text-capitalize"><small> Tables </small></h1>
+                    <div class="col-11 d-flex justify-content-end">
+                        <div class="col-2 my-2">
+                            <label for="">Department</label>
+                            <select class="form-control" v-model="departmentSearch">
+                                <option v-for="v of allDeparment" :value="v.department">{{v.department}}</option>
+                            </select>
+                        </div>
+                        <div class="col-2 my-2">
+                            <label for="">Status</label>
+                            <select class="form-control px-4" v-model="statusSearch">
+                                <option value="0">Pending</option>
+                                <option value="1">Done</option>
+                            </select>
+                        </div>
+                        <div class="col-1 my-2">
+                            <label for="">Assigned</label>
+                            <select class="form-control px-4" v-model="assignedSearch">
+                                <option v-for="v of allAssigned" :value="v.assigned">{{v.assigned}}</option>
+                            </select>
+                        </div>
+                        <div class="col-1 my-2">
+                            <label for="">Priority</label>
+                            <select class="form-control px-4" v-model="prioritySearch">
+                                <option v-for="v of allPriority" :value="v.priority">{{v.priority}}</option>
+                            </select>
+                        </div>
+                        <div class="col-1 my-2">
+                            <label for="">Month</label>
+                            <select class="form-control px-4" v-model="monthSearch">
+                                <option v-for="v of allMonth" :value="v.month">{{monthToString(v.month)}}</option>
+                            </select>
+                        </div>
+                        <div class="col-1 my-2">
+                            <label for="">Year</label>
+                            <select class="form-control px-4" v-model="yearSearch">
+                                <option v-for="v of allYearLevel" :value="v.year">{{v.year}}</option>
+                            </select>
+                        </div>
+                        <div class="col-2 my-2">
+                            <label for="">Table</label>
+                            <select name="selection" id="selection" v-model="selectionTable" class="form-control ">
+                                <option value="2">Concern</option>
+                                <option value="1">Job Order</option>
+                            </select>
+                        </div>
+                        <div class="col-1 my-2 ms-2">
+                            <label for="">Search</label>
+                            <button class="btn btn-md btn-primary" @click="searchThisDataRequest" v-if="selectionTable == 2"> Search Request</button>
+                            <button class="btn btn-md btn-primary" @click="searchThisDataOrder" v-if="selectionTable == 1"> Search Job</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="panel panel-inverse">
-
                     <div class="panel-heading">
-                        <h4 class="panel-title" id="concernTitle">Employee Concern - Table - Concern </h4>
-                        <h4 class="panel-title visually-hidden" id="jobOrderTitle">Employee Concern - Table - Job</h4>
+                        <h4 class="panel-title" id="concernTitle">Employee Concern - Table - Concern - Total of {{countRequestSearch}}</h4>
+                        <h4 class="panel-title visually-hidden" id="jobOrderTitle">Employee Concern - Table - Job - Total of {{countJobSearch}}</h4>
                         <div class="panel-heading-btn">
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
@@ -273,7 +317,7 @@
                             </thead>
 
                             <tbody class="first" id="concernTableBody">
-                                <tr class="odd gradeX" v-for="req of getTotalDepartmentRequest">
+                                <tr class="odd gradeX" v-for="req of allSearchedUserConcern">
                                     <td class="truncate">{{ req.name }}</td>
                                     <td class="truncate">{{ req.email }}</td>
                                     <td class="truncate">{{ req.concern }}</td>
@@ -323,7 +367,7 @@
                             </tbody>
 
                             <tbody class="visually-hidden" id="jobOrderTableBody">
-                                <tr class="odd gradeX" v-for="ord of getTotalDepartmentOrder">
+                                <tr class="odd gradeX" v-for="ord of allSearchedUserJob">
                                     <td class="truncate">{{ ord.name }}</td>
                                     <td class="truncate">{{ ord.email }}</td>
                                     <td class="truncate">{{ getDateToString(ord.deadline) }}</td>

@@ -7,6 +7,9 @@ class dashboardController
     {
         return $this->getTotalPendingAdminByMonthFunction();
     }
+    public function getAllYearLevel(){
+        return $this->getAllYearLevelFunction();
+    }
     public function getTotalPendingDocumentationByMonth()
     {
         return $this->getTotalPendingDocumentationByMonthFunction();
@@ -127,6 +130,22 @@ class dashboardController
     {
         return $this->getTotalPendingSalesByMonthFunction();
     }
+    public function getAllDepartment()
+    {
+        return $this->getAllDepartmentFunction();
+    }
+    public function getAllAssigned()
+    {
+        return $this->getAllAssignedFunction();
+    }
+    public function getAllPriority()
+    {
+        return $this->getAllPriorityFunction();
+    }
+    public function getAllMonth()
+    {
+        return $this->getAllMonthFunction();
+    }
 
 
 
@@ -137,6 +156,46 @@ class dashboardController
             if ($database->getStatus()) {
                 $getAllUser = new dashboard();
                 $stmt = $database->getConnection()->prepare($getAllUser->getAllOrders());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllYearLevelFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllYearLevel());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllDepartmentFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllDepartment());
                 $stmt->execute();
 
                 $result = $stmt->fetchAll();
@@ -728,6 +787,66 @@ class dashboardController
             if ($database->getStatus()) {
                 $getAllUser = new dashboard();
                 $stmt = $database->getConnection()->prepare($getAllUser->getTotalPendingSalesByMonth());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllAssignedFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllAssigned());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllPriorityFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllPriority());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllMonthFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllMonth());
                 $stmt->execute();
 
                 $result = $stmt->fetchAll();

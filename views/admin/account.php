@@ -160,6 +160,15 @@
                                 </div>
                             </div>
 
+                            <div class="menu-item py-1">
+                                <a href="search.php" class="menu-link">
+                                    <div class="menu-icon">
+                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="menu-text">Search Data</div>
+                                </a>
+                            </div>
+
                             <div class="menu-item d-flex">
                                 <a href="javascript:;" class="app-sidebar-minify-btn ms-auto d-flex align-items-center text-decoration-none" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
                             </div>

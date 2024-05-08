@@ -68,26 +68,19 @@
 <body data-bs-spy="scroll" data-bs-target="#header" data-bs-offset="51">
     <img src="/wise/assets/img/logo/mainBackground.png" id="backgroundimage" alt="">
     <img src="/wise/assets/img/logo/owy.png" id="owly" alt="">
+    <div class="position-relative">
+        <div class="float-end">
+            <a href="views/wiseconcern.php" class="me-2 text-dark" onclick="sad()" style="font-size: 11px">IT Login</a>
+        </div>
+    </div>
     <div id="page-container" class="fade">
 
         <div id="home" class="content has-bg home">
 
             <div class="container-fluid home-content text-dark row">
-                <div class="col-12 col-xl-2 col-lg-2"></div>
-
-                <div class="col-12 col-xl-4 col-lg-4">
-                    <a href="views/wiseconcern.php" class="btn btn-md p-5 btn-primary">IT Inventory <br> System Services</a>
-                </div>
-
-                <div class="col-12 col-xl-4 col-lg-4 d-sm-none">
-                    <hr class="my-4">
-                </div>
-
-                <div class="col-12 col-xl-4 col-lg-4">
+                <div class="col-12">
                     <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalForWise" class="btn btn-md p-5 btn-primary">IT Wise Request <br> Order Services</a>
                 </div>
-
-                <div class="col-12 col-xl-2 col-lg-2"></div>
             </div>
 
             <div class="modal fade" id="modalFourSeason">
@@ -183,9 +176,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <script src="assets/js/mainpage/onepageemail.js"></script>

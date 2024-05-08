@@ -25,16 +25,24 @@ class concern
     {
         return $this->getAllUserOrderQuery();
     }
+    public function getAllSearchedUserConcern()
+    {
+        return $this->getAllSearchedUserConcernQuery();
+    }
+    public function getAllSearchedUserJob()
+    {
+        return $this->getAllSearchedUserJobQuery();
+    }
 
     private function getDepartmentOrderQuery()
     {
-        return "SELECT * FROM `order` WHERE department = ?";
+        return "SELECT * FROM `order` WHERE department = ? AND DAY(created_at) = DAY(CURRENT_DATE())";
     }
 
     private function getDepartmentRequestQuery()
     {
-        return "SELECT * FROM `request` WHERE department = ?";
-    }
+        return "SELECT * FROM `request` WHERE department = ? AND DAY(created_at) = DAY(CURRENT_DATE())";
+    }//
 
     private function pendingDoneRequestQuery()
     {
@@ -52,6 +60,13 @@ class concern
 
     private function getAllUserOrderQuery(){
         return "SELECT * FROM `order` WHERE `order_id` = ?";
+    }
+
+    private function getAllSearchedUserConcernQuery(){
+        return "SELECT * FROM `request` WHERE `department` = ? AND `assigned` = ? AND `status` = ? AND `priority` = ? AND MONTH(`created_at`) = ? AND YEAR(`created_at`) = ?";
+    }
+    private function getAllSearchedUserJobQuery(){
+        return "SELECT * FROM `order` WHERE `department` = ? AND `assigned` = ? AND `status` = ? AND `priority` = ? AND MONTH(`created_at`) = ? AND YEAR(`created_at`) = ?";
     }
     
     public function returnValue($result){

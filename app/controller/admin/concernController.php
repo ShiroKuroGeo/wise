@@ -33,6 +33,16 @@ class concernController
         return $this->getAllUserOrderFunction($id);
     }
 
+    public function getAllSearchedUserConcern($department, $assigned, $status, $priority, $month, $year)
+    {
+        return $this->getAllSearchedUserConcernFunction($department, $assigned, $status, $priority, $month, $year);
+    }
+
+    public function getAllSearchedUserJob($department, $assigned, $status, $priority, $month, $year)
+    {
+        return $this->getAllSearchedUserJobFunction($department, $assigned, $status, $priority, $month, $year);
+    }
+
     private function getDepartmentOrderFunction($departmentId)
     {
         try {
@@ -135,6 +145,46 @@ class concernController
                 $getAllUser = new concern();
                 $stmt = $database->getConnection()->prepare($getAllUser->getAllUserOrder());
                 $stmt->execute(array($id));
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+    
+    private function getAllSearchedUserConcernFunction($department, $assigned, $status, $priority, $month, $year)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllSearchedUserConcern());
+                $stmt->execute(array($department, $assigned, $status, $priority, $month, $year));
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllSearchedUserJobFunction($department, $assigned, $status, $priority, $month, $year)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllSearchedUserJob());
+                $stmt->execute(array($department, $assigned, $status, $priority, $month, $year));
 
                 $result = $stmt->fetchAll();
 

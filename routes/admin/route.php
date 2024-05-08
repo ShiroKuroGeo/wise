@@ -171,3 +171,23 @@ function getTotalPendingSalesByMonth(){
     $admin = new dashboardController();
     echo $admin->getTotalPendingSalesByMonth();
 }
+function getAllYearLevel(){
+    $admin = new dashboardController();
+    echo $admin->getAllYearLevel();
+}
+function getAllDepartment(){
+    $admin = new dashboardController();
+    echo $admin->getAllDepartment();
+}
+function getAllAssigned(){
+    $admin = new dashboardController();
+    echo $admin->getAllAssigned();
+}
+function getAllPriority(){
+    $admin = new dashboardController();
+    echo $admin->getAllPriority();
+}
+function getAllMonth(){
+    $admin = new dashboardController();
+    echo $admin->getAllMonth();
+}
