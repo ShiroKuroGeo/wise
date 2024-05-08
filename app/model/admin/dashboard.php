@@ -181,6 +181,23 @@ class dashboard
     {
         return $this->getTotalPendingSalesByMonthQuery();
     }
+//
+    public function getTotalPendingMarketingByDay()
+    {
+        return $this->getTotalPendingMarketingByDayQuery();
+    }
+    public function getTotalDoneMarketingByDay()
+    {
+        return $this->getTotalDoneMarketingByDayQuery();
+    }
+    public function getTotalDoneMarketingByMonth()
+    {
+        return $this->getTotalDoneMarketingByMonthQuery();
+    }
+    public function getTotalPendingMarketingByMonth()
+    {
+        return $this->getTotalPendingMarketingByMonthQuery();
+    }
 
 
     //Private
@@ -498,5 +515,45 @@ class dashboard
     private function getAllToResetUsersQuery()
     {
         return "SELECT * FROM `users`";
+    }
+
+    private function getTotalPendingMarketingByDayQuery()
+    {
+        return "SELECT SUM(pendingStatus) as pendingStatus 
+        FROM (
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Marketing Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            UNION ALL
+            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Marketing Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+        ) AS addedStatus;";
+    }
+
+    private function getTotalDoneMarketingByDayQuery()
+    {
+        return "SELECT SUM(pendingStatus) as pendingStatus 
+        FROM (
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Marketing Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            UNION ALL
+            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Marketing Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+        ) AS addedStatus;";
+    }
+
+    private function getTotalDoneMarketingByMonthQuery()
+    {
+        return "SELECT SUM(pendingStatus) as pendingStatus 
+        FROM (
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Marketing Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            UNION ALL
+            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Marketing Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+        ) AS addedStatus;";
+    }
+
+    private function getTotalPendingMarketingByMonthQuery()
+    {
+        return "SELECT SUM(pendingStatus) as pendingStatus 
+        FROM (
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Marketing Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            UNION ALL
+            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Marketing Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+        ) AS addedStatus;";
     }
 }

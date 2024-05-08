@@ -147,6 +147,23 @@ class dashboardController
         return $this->getAllMonthFunction();
     }
 
+    public function getTotalPendingMarketingByDay()
+    {
+        return $this->getTotalPendingMarketingByDayFunction();
+    }
+    public function getTotalDoneMarketingByDay()
+    {
+        return $this->getTotalDoneMarketingByDayFunction();
+    }
+    public function getTotalDoneMarketingByMonth()
+    {
+        return $this->getTotalDoneMarketingByMonthFunction();
+    }
+    public function getTotalPendingMarketingByMonth()
+    {
+        return $this->getTotalPendingMarketingByMonthFunction();
+    }
+
 
 
     private function getAllOrdersFunction()
@@ -847,6 +864,86 @@ class dashboardController
             if ($database->getStatus()) {
                 $getAllUser = new dashboard();
                 $stmt = $database->getConnection()->prepare($getAllUser->getAllMonth());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+    
+    private function getTotalPendingMarketingByDayFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getTotalPendingMarketingByDay());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getTotalDoneMarketingByDayFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getTotalDoneMarketingByDay());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getTotalDoneMarketingByMonthFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getTotalDoneMarketingByMonth());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getTotalPendingMarketingByMonthFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getTotalPendingMarketingByMonth());
                 $stmt->execute();
 
                 $result = $stmt->fetchAll();

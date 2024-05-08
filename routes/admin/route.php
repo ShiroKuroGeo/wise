@@ -191,3 +191,19 @@ function getAllMonth(){
     $admin = new dashboardController();
     echo $admin->getAllMonth();
 }
+function getTotalPendingMarketingByDay(){
+    $admin = new dashboardController();
+    echo $admin->getTotalPendingMarketingByDay();
+}
+function getTotalDoneMarketingByDay(){
+    $admin = new dashboardController();
+    echo $admin->getTotalDoneMarketingByDay();
+}
+function getTotalDoneMarketingByMonth(){
+    $admin = new dashboardController();
+    echo $admin->getTotalDoneMarketingByMonth();
+}
+function getTotalPendingMarketingByMonth(){
+    $admin = new dashboardController();
+    echo $admin->getTotalPendingMarketingByMonth();
+}

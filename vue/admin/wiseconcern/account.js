@@ -26,6 +26,10 @@ const account = createApp({
             totalDoneSalesByMonth: 0,
             totalPendingSalesByMonth: 0,
             showhide: true,
+            totalPendingMarketingByDay: 0,
+            totalDoneMarketingByDay: 0,
+            totalDoneMarketingByMonth: 0,
+            totalPendingMarketingByMonth: 0,
         }
     },
     methods: {
@@ -287,6 +291,55 @@ const account = createApp({
                     }
                 });
         },
+
+        getTotalPendingMarketingByDay() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalPendingMarketingByDay");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalPendingMarketingByDay = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalDoneMarketingByDay() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalDoneMarketingByDay");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalDoneMarketingByDay = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalDoneMarketingByMonth() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalDoneMarketingByMonth");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalDoneMarketingByMonth = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalPendingMarketingByMonth() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalPendingMarketingByMonth");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalPendingMarketingByMonth = v.pendingStatus;
+                    }
+                });
+        },
         toggleShowHidePassword() {
             this.showhide = !this.showhide;
         },
@@ -300,7 +353,10 @@ const account = createApp({
             this.getTotalDoneDocumentation();
             this.getTotalDoneHuman();
             this.getTotalDoneAccounting();
-
+            this.getTotalPendingMarketingByDay();
+            this.getTotalDoneMarketingByDay();
+            this.getTotalDoneMarketingByMonth();
+            this.getTotalPendingMarketingByMonth();
             this.getTotalPendingSalesByDay();
             this.getTotalDoneSalesByDay();
             this.getTotalDoneSalesByMonth();

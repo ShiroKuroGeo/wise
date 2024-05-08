@@ -108,8 +108,8 @@
                                                 <i class="fas fa-building"></i>
                                             </div>
                                             <div class="menu-text">Admin</div>
-                                            <div :class="parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin)  !== 0 ? 'text-end text-danger' : 'text-end'">
-                                                {{ parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin) !== 0 ? '!' : '' }}
+                                            <div :class="parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin) !== 0 ? 'text-end text-danger' : 'text-end'">
+                                                {{ parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin) !== 0 ? parseInt(totalPendingAdmin) + parseInt(totalDoneAdmin) : '' }}
                                             </div>
                                         </a>
                                     </div>
@@ -120,7 +120,7 @@
                                             </div>
                                             <div class="menu-text">Documents</div>
                                             <div :class="parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? 'text-end text-danger' : 'text-end'">
-                                                {{ parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? '!' : '' }}
+                                                {{ parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? parseInt(totalPendingDocumentation) + parseInt(totalDoneDocumentation) : '' }}
                                             </div>
                                         </a>
                                     </div>
@@ -131,7 +131,7 @@
                                             </div>
                                             <div class="menu-text">Accounting</div>
                                             <div :class="parseInt(totalPendingAccounting) || parseInt(totalDoneAccounting) !== 0 ? 'text-end text-danger' : 'text-end'">
-                                                {{ parseInt(totalPendingAccounting) || parseInt(totalDoneAccounting) !== 0 ? '!' : '' }}
+                                                {{ parseInt(totalPendingAccounting) || parseInt(totalDoneAccounting) !== 0 ? parseInt(totalPendingAccounting) + parseInt(totalDoneAccounting) : '' }}
                                             </div>
                                         </a>
                                     </div>
@@ -142,7 +142,7 @@
                                             </div>
                                             <div class="menu-text">Human Resource</div>
                                             <div :class="parseInt(totalPendingHuman) || parseInt(totalDoneHuman) !== 0 ? 'text-end text-danger' : 'text-end'">
-                                                {{ parseInt(totalPendingHuman) || parseInt(totalDoneHuman) !== 0 ? '!' : '' }}
+                                                {{ parseInt(totalPendingHuman) || parseInt(totalDoneHuman) !== 0 ? parseInt(totalPendingHuman) + parseInt(totalDoneHuman) : '' }}
                                             </div>
                                         </a>
                                     </div>
@@ -154,6 +154,17 @@
                                             <div class="menu-text">Sales</div>
                                             <div :class="parseInt(totalPendingSalesByDay) || parseInt(totalDoneSalesByDay) !== 0 ? 'text-end text-danger' : 'text-end'">
                                                 {{ parseInt(totalPendingSalesByDay) || parseInt(totalDoneSalesByDay) !== 0 ? parseInt(totalPendingSalesByDay) + parseInt(totalDoneSalesByDay) : '' }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a href="concern.php?department000=Marketing" class="menu-link">
+                                            <div class="menu-icon">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="menu-text">Marketing</div>
+                                            <div :class="parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? 'text-end text-danger' : 'text-end'">
+                                                {{ parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? parseInt(totalPendingMarketingByDay) + parseInt(totalDoneMarketingByDay) : '' }}
                                             </div>
                                         </a>
                                     </div>

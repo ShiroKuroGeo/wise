@@ -40,6 +40,10 @@ const account = createApp({
             totalDoneSalesByMonth: 0,
             totalPendingSalesByMonth: 0,
             pendingDoneTheStatus: true,
+            totalPendingMarketingByDay: 0,
+            totalDoneMarketingByDay: 0,
+            totalDoneMarketingByMonth: 0,
+            totalPendingMarketingByMonth: 0,
         }
     },
     methods: {
@@ -552,7 +556,7 @@ const account = createApp({
             return monthNames[monthNumber - 1];
         },
         searchThisDataRequest() {
-            
+
 
             const vue = this;
 
@@ -602,8 +606,8 @@ const account = createApp({
                 .then(function (r) {
                     vue.allSearchedUserJob = [];
                     vue.countJobSearch = r.data.length;
-                    
-                    for (var v of r.data) { 
+
+                    for (var v of r.data) {
                         vue.allSearchedUserJob.push({
                             order_id: v.order_id,
                             department: v.department,
@@ -618,6 +622,54 @@ const account = createApp({
                             created_at: v.created_at,
                             updated_at: v.updated_at,
                         });
+                    }
+                });
+        },
+        getTotalPendingMarketingByDay() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalPendingMarketingByDay");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalPendingMarketingByDay = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalDoneMarketingByDay() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalDoneMarketingByDay");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalDoneMarketingByDay = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalDoneMarketingByMonth() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalDoneMarketingByMonth");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalDoneMarketingByMonth = v.pendingStatus;
+                    }
+                });
+        },
+        getTotalPendingMarketingByMonth() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getTotalPendingMarketingByMonth");
+            axios.post('../../routes/admin/route.php', data)
+                .then(function (r) {
+                    for (var v of r.data) {
+                        vue.totalPendingMarketingByMonth = v.pendingStatus;
                     }
                 });
         },
@@ -642,6 +694,10 @@ const account = createApp({
             this.getTotalDoneSalesByDay();
             this.getTotalDoneSalesByMonth();
             this.getTotalPendingSalesByMonth();
+            this.getTotalPendingMarketingByDay();
+            this.getTotalDoneMarketingByDay();
+            this.getTotalDoneMarketingByMonth();
+            this.getTotalPendingMarketingByMonth();
         },
     },
     created: function () {

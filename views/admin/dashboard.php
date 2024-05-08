@@ -167,6 +167,17 @@ include('../../app/session/setSession.php');
                                         </div>
                                     </a>
                                 </div>
+                                <div class="menu-item">
+                                    <a href="concern.php?department000=Marketing" class="menu-link">
+                                        <div class="menu-icon">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div class="menu-text">Marketing</div>
+                                        <div :class="parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? 'text-end text-danger' : 'text-end'">
+                                            {{ parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? parseInt(totalPendingMarketingByDay) + parseInt(totalDoneMarketingByDay) : '' }}
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -280,7 +291,7 @@ include('../../app/session/setSession.php');
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
                                 </div>
                             </div>
-                            <canvas id="interactive-chart2" height="230"></canvas>
+                            <canvas id="interactive-chart2" height="300"></canvas>
                         </div>
                     </div>
                     <div class="col-xl-3">
@@ -321,6 +332,10 @@ include('../../app/session/setSession.php');
                                         <tr>
                                             <td>Sales</td>
                                             <td :class="totalPendingSalesByDay == 0 ? 'text-end' : 'text-end text-danger' ">{{ totalPendingSalesByDay }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marketing</td>
+                                            <td :class="totalPendingMarketingByDay == 0 ? 'text-end' : 'text-end text-danger' ">{{ totalPendingMarketingByDay }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -365,6 +380,10 @@ include('../../app/session/setSession.php');
                                         <tr>
                                             <td>Sales</td>
                                             <td :class="totalDoneSalesByDay == 0 ? 'text-end' : 'text-end text-danger' ">{{ totalDoneSalesByDay }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marketing</td>
+                                            <td :class="totalDoneMarketingByDay == 0 ? 'text-end' : 'text-end text-danger' ">{{ totalDoneMarketingByDay }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -411,6 +430,10 @@ include('../../app/session/setSession.php');
                                             <td>Sales Department</td>
                                             <td class="text-end">{{ totalPendingSalesByMonth }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>Marketing Department</td>
+                                            <td class="text-end">{{ totalPendingMarketingByMonth }}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -454,6 +477,10 @@ include('../../app/session/setSession.php');
                                         <tr>
                                             <td>Sales Department</td>
                                             <td class="text-end">{{ totalDoneSalesByMonth }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marketing Department</td>
+                                            <td class="text-end">{{ totalDoneMarketingByMonth }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

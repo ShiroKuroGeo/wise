@@ -114,7 +114,7 @@
                                             <i class="fas fa-building"></i>
                                         </div>
                                         <div class="menu-text">Admin</div>
-                                        <div :class="parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin)  !== 0 ? 'text-end text-danger' : 'text-end'">
+                                        <div :class="parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin) !== 0 ? 'text-end text-danger' : 'text-end'">
                                             {{ parseInt(totalPendingAdmin) || parseInt(totalDoneAdmin) !== 0 ? parseInt(totalPendingAdmin) + parseInt(totalDoneAdmin) : '' }}
                                         </div>
                                     </a>
@@ -160,6 +160,17 @@
                                         <div class="menu-text">Sales</div>
                                         <div :class="parseInt(totalPendingSalesByDay) || parseInt(totalDoneSalesByDay) !== 0 ? 'text-end text-danger' : 'text-end'">
                                             {{ parseInt(totalPendingSalesByDay) || parseInt(totalDoneSalesByDay) !== 0 ? parseInt(totalPendingSalesByDay) + parseInt(totalDoneSalesByDay) : '' }}
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="menu-item">
+                                    <a href="concern.php?department000=Marketing" class="menu-link">
+                                        <div class="menu-icon">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div class="menu-text">Marketing</div>
+                                        <div :class="parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? 'text-end text-danger' : 'text-end'">
+                                            {{ parseInt(totalPendingMarketingByDay) || parseInt(totalDoneMarketingByDay) !== 0 ? parseInt(totalPendingMarketingByDay) + parseInt(totalDoneMarketingByDay) : '' }}
                                         </div>
                                     </a>
                                 </div>

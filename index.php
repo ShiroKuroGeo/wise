@@ -141,6 +141,7 @@
                                         <option value="Accounting Department">Accounting Department</option>
                                         <option value="Human Resource Department">Human Resource Department</option>
                                         <option value="Sales Department">Sales Department</option>
+                                        <option value="Marketing Department">Marketing Department</option>
                                     </select>
                                 </div>
                             </div>
@@ -169,6 +170,7 @@
                                         <option value="Accounting Department">Accounting Department</option>
                                         <option value="Human Resource Department">Human Resource Department</option>
                                         <option value="Sales Department">Sales Department</option>
+                                        <option value="Marketing Department">Marketing Department</option>
                                     </select>
                                 </div>
                             </div>
