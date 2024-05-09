@@ -29,7 +29,7 @@
                             <figure class="m-0 p-0">
                                 <img class="img-fluid" loading="lazy" src="../assets/companyimage/benryan.png" alt="">
                                 <figcaption class="m-0 p-4">
-                                    <h4 class="mb-1">Ben Ryan Ybañez</h4>
+                                    <h4 class="mb-1">Ybañez, Ben Ryan</h4>
                                     <p class="text-secondary mb-0">Chieft Executive Officer</p>
                                 </figcaption>
                             </figure>
@@ -42,7 +42,7 @@
                             <figure class="m-0 p-0">
                                 <img class="img-fluid w-100" loading="lazy" src="../assets/companyimage/vincent.png" alt="">
                                 <figcaption class="m-0 p-4">
-                                    <h4 class="mb-1">Vincent Calledo</h4>
+                                    <h4 class="mb-1">Calledo, Vincent MC Niño</h4>
                                     <p class="text-secondary mb-0">IT Supervisor</p>
                                 </figcaption>
                             </figure>
@@ -55,7 +55,7 @@
                             <figure class="m-0 p-0">
                                 <img class="img-fluid" loading="lazy" src="../assets/companyimage/francis.png" alt="">
                                 <figcaption class="m-0 p-4">
-                                    <h4 class="mb-1">Francis John Dizon</h4>
+                                    <h4 class="mb-1">Dizon, Francis John</h4>
                                     <p class="text-secondary mb-0">IT Support</p>
                                 </figcaption>
                             </figure>

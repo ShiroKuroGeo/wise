@@ -53,19 +53,6 @@
         <span class="spinner"></span>
     </div>
     <div id="app" class="app app-header-fixed app-sidebar-fixed">
-
-        <div id="header" class="app-header">
-
-            <div class="navbar-header">
-                <a href="../../index.php" class="navbar-brand"><b class="me-3px">W I S E</b></a>
-                <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-        </div>
         <div class="content" id="request">
             <div class="row justify-content-center align-items-center mt-5">
 

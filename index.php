@@ -79,6 +79,28 @@
             position: relative;
             z-index: 1;
         }
+
+        .footer {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            padding-top: 10px;
+            height: 35px;
+            z-index: -2;
+        }
+
+        .link {
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0;
+            padding-top: 10px;
+            height: 35px;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -95,7 +117,7 @@
 
         <div id="home" class="content has-bg home">
 
-            <div class="container-fluid home-content text-dark row mt-1">
+            <div class="container-fluid home-content text-dark row" style="margin-top: -20px;">
                 <div class="bg-absolute">
                     <img src="assets/img/picture.webp" class="rounded rounded-5 shadow border shadow-3" alt="">
                 </div>
@@ -199,6 +221,9 @@
                     </div>
                 </div>
             </div>
+            <span class="" style="background-color: rgb(0, 0, 125); color: gray">
+                <h6 class="text-center text-secondary mt-2" style="font-size: 12px;">Powered by <a href="/wise/pages/aboutus.php" class="link" onclick="sad()">Wise IT Department</a> <span class="font-weight-bold">WITD</span></h6><br>
+            </span>
         </div>
     </div>
 

@@ -18,19 +18,6 @@
         <span class="spinner"></span>
     </div>
     <div id="app" class="app app-header-fixed app-sidebar-fixed">
-
-        <div id="header" class="app-header">
-
-            <div class="navbar-header">
-                <a href="../../index.php" class="navbar-brand"><b class="me-3px">W I S E</b></a>
-                <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-
-        </div>
         <div class="content" id="order">
             <div class="row justify-content-center align-items-center mt-5">
                 <div class="col-xl-6">
@@ -89,24 +76,12 @@
                                     <label class="col-lg-4 col-form-label form-label" for="message">Priority</label>
                                     <div class="col-lg-8 d-flex">
                                         <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="easyPriority" value="Easy" onchange="handleCheckboxChange('easyPriority')">
-                                            <label class="form-check-label" for="easyPriority">Easy</label>
-                                        </div>
-                                        <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="moderatePriority" value="Moderate" onchange="handleCheckboxChange('moderatePriority')">
-                                            <label class="form-check-label" for="moderatePriority">Moderate</label>
-                                        </div>
-                                        <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="hardPriority" value="Hard" onchange="handleCheckboxChange('hardPriority')">
-                                            <label class="form-check-label" for="hardPriority">Hard</label>
-                                        </div>
-                                        <div class="form-check me-3">
                                             <input class="form-check-input" type="radio" v-model="priority" name="priority" id="urgentPriority" value="Urgent" onchange="handleCheckboxChange('urgentPriority')">
-                                            <label class="form-check-label" for="urgentPriority">urgent</label>
+                                            <label class="form-check-label" for="urgentPriority">Urgent</label>
                                         </div>
                                         <div class="form-check me-3">
                                             <input class="form-check-input" type="radio" v-model="priority" name="priority" id="scheduledPriority" value="Schedule" onchange="handleCheckboxChange('scheduledPriority')">
-                                            <label class="form-check-label" for="scheduledPriority">scheduled</label>
+                                            <label class="form-check-label" for="scheduledPriority">Scheduled</label>
                                         </div>
                                     </div>
                                 </div>
