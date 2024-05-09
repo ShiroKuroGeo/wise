@@ -13,7 +13,7 @@ const login = createApp({
         },
         selectedRouteOrder(){
             window.location.href = "views/employee/wise/order.php?departmentId002=" + this.orderRoute;
-        }
+        },
     },
     created: function () {
 

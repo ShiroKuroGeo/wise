@@ -800,11 +800,11 @@ const account = createApp({
 
                     for (var v of r.data) {
                         vue.allTotalOrder.push({
-                            request_id: v.request_id,
+                            order_id: v.order_id,
                             department: v.department,
                             name: v.name,
                             email: v.email,
-                            concern: v.concern,
+                            deadline: v.deadline,
                             issue: v.issue,
                             assigned: v.assigned,
                             priority: v.priority,

@@ -16,6 +16,7 @@
     <link href="assets/css/fileupload/blueimp-gallery.min.css" rel="stylesheet" />
     <link href="assets/css/fileupload/jquery.fileupload.css" rel="stylesheet" />
     <link href="assets/css/fileupload/jquery.fileupload-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
     <style>
         .btn.btn-primary {
             position: relative;
@@ -112,12 +113,23 @@
             height: 35px;
             z-index: 1;
         }
+
+        .poweredby {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
     </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#header" data-bs-offset="51">
     <img src="/wise/assets/img/logo/mainBackground.png" id="backgroundimage" alt="">
     <img src="/wise/assets/img/logo/owy.png" id="owly" alt="">
+    <div>
+        <span class="poweredby text-danger fs-5 me-3">
+            Powered By: Shiro George Alfeser
+        </span>
+    </div>
     <img src="/wise/assets/img/logo/clickhere.png" id="clickhere" alt="">
     <div class="position-relative">
         <div class="float-end">
@@ -131,7 +143,7 @@
 
             <div class="container-fluid home-content text-dark row" style="margin-top: -20px;">
                 <div class="bg-absolute">
-                    <img src="assets/img/picture.webp" class="rounded rounded-5 shadow border shadow-3" alt="">
+                    <img src="assets/img/picture.webp" class="rounded rounded-5 shadow shadow-3" alt="">
                 </div>
                 <div class="col-12 button-container">
                     <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalForWise" class="btn btn-md p-3 btn-primary mt-5 px-5 shadow">IT Ticket</a>

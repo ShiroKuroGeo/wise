@@ -70,6 +70,7 @@
                                 <figcaption class="m-0 p-4">
                                     <h4 class="mb-1">Inoc, George Alfeser H.</h4>
                                     <p class="text-secondary mb-0">Web Developer / Programmer</p>
+                                    <button class="btn btn-sm btn-info" onclick="goto()">Contact Me</button>
                                 </figcaption>
                             </figure>
                         </div>
@@ -79,5 +80,9 @@
         </div>
     </section>
 </body>
-
+<script>
+    function goto(){
+        window.location.href = "https://shirogeo.vercel.app/";
+    }
+</script>
 </html>
