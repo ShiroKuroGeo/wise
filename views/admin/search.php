@@ -38,7 +38,6 @@
                 <div class="navbar-header">
                     <a href="dashboard.php" class="navbar-brand">
                         <img src="../../assets/img/logo/wiselogo.png" alt="">
-                        <b class="me-3px">W I S E </b>
                     </a>
                     <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                         <span class="icon-bar"></span>
@@ -308,7 +307,7 @@
                                     <th class="text-nowrap">Status</th>
                                     <th class="text-nowrap">Created</th>
                                     <th width="15%">Pictures</th>
-                                    <th width="15%">View Information</th>
+                                    <th width="15%">Action</th>
                                 </tr>
                             </thead>
 
@@ -321,7 +320,7 @@
                                     <th class="text-nowrap">Status</th>
                                     <th class="text-nowrap">Created</th>
                                     <th width="15%">Picture</th>
-                                    <th width="15%">View Information</th>
+                                    <th width="15%">Action</th>
                                 </tr>
                             </thead>
 
@@ -370,7 +369,8 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <a :href="'requestView.php?id='+wordToCode(req.request_id)">View</a>
+                                        <button class="btn btn-sm btn-danger col-6" @click="getRequestDelete(req.request_id)">Delete</button>
+                                        <a :href="'requestView.php?id='+wordToCode(req.request_id)" class="btn btn-sm btn-info col-6">View</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -419,7 +419,8 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <a :href="'orderView.php?id='+wordToCode(ord.order_id)">View</a>
+                                        <button class="btn btn-sm btn-danger col-6" @click="getOrderDelete(ord.order_id)">Delete</button>
+                                        <a :href="'orderView.php?id='+wordToCode(ord.order_id)" class="btn btn-sm btn-info col-6">View</a>
                                     </td>
                                 </tr>
                             </tbody>

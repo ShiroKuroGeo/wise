@@ -164,6 +164,15 @@ class dashboardController
         return $this->getTotalPendingMarketingByMonthFunction();
     }
 
+    public function getRequestDelete($id)
+    {
+        return $this->getRequestDeleteFunction($id);
+    }
+    public function getOrderDelete($id)
+    {
+        return $this->getOrderDeleteFunction($id);
+    }
+
 
 
     private function getAllOrdersFunction()
@@ -949,6 +958,40 @@ class dashboardController
                 $result = $stmt->fetchAll();
 
                 return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+    
+    private function getRequestDeleteFunction($id)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getRequestDelete());
+                $stmt->execute(array($id));
+                return $getAllUser->returnValue($stmt->rowCount());
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getOrderDeleteFunction($id)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new dashboard();
+                $stmt = $database->getConnection()->prepare($getAllUser->getOrderDelete());
+                $stmt->execute(array($id));  
+                return $getAllUser->returnValue($stmt->rowCount());
             } else {
                 return 400;
             }

@@ -63,6 +63,17 @@
             z-index: -1;
         }
 
+        #clickhere {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin-left: 70px;
+            margin-bottom: 220px;
+            width: 15%;
+            height: 13%;
+            z-index: -1;
+        }
+
         .container-fluid {
             position: relative;
         }
@@ -107,6 +118,7 @@
 <body data-bs-spy="scroll" data-bs-target="#header" data-bs-offset="51">
     <img src="/wise/assets/img/logo/mainBackground.png" id="backgroundimage" alt="">
     <img src="/wise/assets/img/logo/owy.png" id="owly" alt="">
+    <img src="/wise/assets/img/logo/clickhere.png" id="clickhere" alt="">
     <div class="position-relative">
         <div class="float-end">
             <a href="views/wiseconcern.php" class="me-2 text-dark" onclick="sad()" style="font-size: 11px">IT Login</a>
@@ -222,7 +234,7 @@
                 </div>
             </div>
             <span class="" style="background-color: rgb(0, 0, 125); color: gray">
-                <h6 class="text-center text-secondary mt-2" style="font-size: 12px;">Powered by <a href="/wise/pages/aboutus.php" class="link" onclick="sad()">Wise IT Department</a> <span class="font-weight-bold">WITD</span></h6><br>
+                <h6 class="text-center text-secondary mt-2" style="font-size: 12px;">Powered by <a href="/wise/pages/aboutus.php" class="link">Wise IT Department</a> <span class="font-weight-bold">WITD</span></h6><br>
             </span>
         </div>
     </div>

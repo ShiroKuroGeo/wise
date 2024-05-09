@@ -816,6 +816,44 @@ const account = createApp({
                     }
                 });
         },
+        getRequestDelete(id) {
+            if (confirm('Are you sure want to delete this data?')) {
+                const vue = this;
+                var data = new FormData();
+                data.append("method", "getRequestDelete");
+                data.append("id", id);
+                axios.post('../../routes/admin/route.php', data)
+                    .then(function (r) {
+                        if (r.data == 200) {
+                            vue.allowedChangeStatus = true;
+                        } else {
+                            alert(r.data + ' There is something is wrong!');
+                        }
+                    });
+            } else {
+                alert('Data safety not deleted!');
+            }
+
+        },
+        getOrderDelete(id) {
+            if (confirm('Are you sure want to delete this data?')) {
+                const vue = this;
+                var data = new FormData();
+                data.append("method", "getOrderDelete");
+                data.append("id", id);
+                axios.post('../../routes/admin/route.php', data)
+                    .then(function (r) {
+                        if (r.data == 200) {
+                            vue.allowedChangeStatus = true;
+                        } else {
+                            alert(r.data + ' There is something is wrong!');
+                        }
+                    });
+            } else {
+                alert('Data safety not deleted!');
+            }
+
+        },
         resetFunction() {
             this.getAllTotalRequest();
             this.getAllTotalOrder();

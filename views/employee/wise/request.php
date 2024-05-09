@@ -44,6 +44,26 @@
             right: 0.75rem;
             transform: translateY(-50%);
         }
+
+        #backgroundimage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        #owly {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 15%;
+            height: 30%;
+            z-index: -1;
+        }
     </style>
 </head>
 
@@ -53,6 +73,8 @@
         <span class="spinner"></span>
     </div>
     <div id="app" class="app app-header-fixed app-sidebar-fixed">
+        <img src="/wise/assets/img/logo/mainBackground.png" id="backgroundimage" alt="">
+        <img src="/wise/assets/img/logo/owy.png" id="owly" alt="">
         <div class="content" id="request">
             <div class="row justify-content-center align-items-center mt-5">
 

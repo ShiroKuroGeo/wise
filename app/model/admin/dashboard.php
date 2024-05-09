@@ -2,6 +2,15 @@
 
 class dashboard
 {
+    public function getRequestDelete()
+    {
+        return $this->getRequestDeleteQuery();
+    }
+    public function getOrderDelete()
+    {
+        return $this->getOrderDeleteQuery();
+    }
+
     public function getAllOrders()
     {
         return $this->getAllOrdersQuery();
@@ -181,7 +190,7 @@ class dashboard
     {
         return $this->getTotalPendingSalesByMonthQuery();
     }
-//
+    //
     public function getTotalPendingMarketingByDay()
     {
         return $this->getTotalPendingMarketingByDayQuery();
@@ -512,6 +521,15 @@ class dashboard
     {
         return "SELECT * FROM `order`";
     }
+
+    private function getRequestDeleteQuery()
+    {
+        return "DELETE FROM `request` WHERE `request_id` = ?";
+    }
+    private function getOrderDeleteQuery()
+    {
+        return "DELETE FROM `order` WHERE `order_id` = ?";
+    }
     private function getAllToResetUsersQuery()
     {
         return "SELECT * FROM `users`";
@@ -555,5 +573,14 @@ class dashboard
             UNION ALL
             SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Marketing Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
         ) AS addedStatus;";
+    }
+
+    public function returnValue($result)
+    {
+        if ($result > 0) {
+            return 200;
+        } else {
+            return 400;
+        }
     }
 }

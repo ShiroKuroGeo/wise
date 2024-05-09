@@ -207,3 +207,12 @@ function getTotalPendingMarketingByMonth(){
     $admin = new dashboardController();
     echo $admin->getTotalPendingMarketingByMonth();
 }
+
+function getRequestDelete(){
+    $admin = new dashboardController();
+    echo $admin->getRequestDelete($_POST['id']);
+}
+function getOrderDelete(){
+    $admin = new dashboardController();
+    echo $admin->getOrderDelete($_POST['id']);
+}

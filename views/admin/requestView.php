@@ -49,7 +49,6 @@
                 <div class="navbar-header">
                     <a href="dashboard.php" class="navbar-brand">
                         <img src="../../assets/img/logo/wiselogo.png" alt="">
-                        <b class="me-3px">W I S E </b>
                     </a>
                     <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                         <span class="icon-bar"></span>

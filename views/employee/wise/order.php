@@ -12,12 +12,35 @@
     <link href="../../../assets/css/color.min.css" rel="stylesheet" />
 
 </head>
+<style>
+    #backgroundimage {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.2;
+    }
+
+    #owly {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 15%;
+        height: 30%;
+        z-index: -1;
+    }
+</style>
 
 <body>
     <div id="loader" class="app-loader">
         <span class="spinner"></span>
     </div>
     <div id="app" class="app app-header-fixed app-sidebar-fixed">
+        <img src="/wise/assets/img/logo/mainBackground.png" id="backgroundimage" alt="">
+        <img src="/wise/assets/img/logo/owy.png" id="owly" alt="">
         <div class="content" id="order">
             <div class="row justify-content-center align-items-center mt-5">
                 <div class="col-xl-6">
@@ -55,15 +78,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
-                                    <label class="col-lg-4 col-form-label form-label" for="message">Deadline :</label>
-                                    <div class="col-lg-8">
-                                        <input type="date" v-model="deadline" id="deadline" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-3">
                                     <label class="col-lg-4 col-form-label form-label" for="message">Description :</label>
                                     <div class="col-lg-8">
                                         <textarea class="form-control" id="message" v-model="message" rows="2" placeholder="Enter Issue"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label class="col-lg-4 col-form-label form-label" for="message">Deadline :</label>
+                                    <div class="col-lg-8">
+                                        <input type="date" v-model="deadline" id="deadline" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
