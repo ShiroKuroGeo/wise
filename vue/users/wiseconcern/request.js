@@ -19,33 +19,44 @@ const login = createApp({
             this.department = departmentId001;
         },
         sendRequest() {
+
             const vue = this;
-            if (vue.name == '' || vue.email == '' || vue.concern == 0 || vue.priority == '') {
+            if (vue.name == '' || vue.email == '' || vue.deadline == 0 || vue.priority == '') {
                 alert('Empty Field Required!');
             } else {
                 var data = new FormData();
-
-                data.append("method", "sendRequest");
-                data.append('department', this.department);
-                data.append('name', this.name);
-                data.append('email', this.email);
-                data.append('concern', this.concern);
-                data.append('issue', this.message);
-                data.append('assigned', this.assignedto);
-                data.append('priority', this.priority);
-
-                const inputFiles = document.getElementById('pictures').files;
-                for (let i = 0; i < inputFiles.length; i++) {
-                    data.append('pictures[]', inputFiles[i]);
-                }
-
+                data.append("method", "verifyEmail");
+                data.append('email', vue.email);
                 axios.post('../../../routes/users/user.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            window.location.href = "/wise/assets/alert/requestordersucces.php";
+                            var data = new FormData();
+
+                            data.append("method", "sendRequest");
+                            data.append('department', vue.department);
+                            data.append('name', vue.name);
+                            data.append('email', vue.email);
+                            data.append('concern', vue.concern);
+                            data.append('issue', vue.message);
+                            data.append('assigned', vue.assignedto);
+                            data.append('priority', vue.priority);
+
+                            const inputFiles = document.getElementById('pictures').files;
+                            for (let i = 0; i < inputFiles.length; i++) {
+                                data.append('pictures[]', inputFiles[i]);
+                            }
+
+                            axios.post('../../../routes/users/user.php', data)
+                                .then(function (r) {
+                                    if (r.data == 200) {
+                                        window.location.href = "/wise/assets/alert/requestordersucces.php";
+                                    } else {
+                                        alert("Something is not right!");
+                                        console.log(r.data);
+                                    }
+                                });
                         } else {
-                            alert("Something is not right!");
-                            console.log(r.data);
+                            alert('Email is not registered!');
                         }
                     });
             }

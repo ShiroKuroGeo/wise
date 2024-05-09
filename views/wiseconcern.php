@@ -39,7 +39,7 @@
             <main class="main">
                 <div class="reg__wrap" style="background-color: rgba(0, 32, 77, 0.8); color: white;">
                     <div class="reg__image">
-                        <div class="bg-absolute"><img src="/wise/assets/img/logo/mainBackground.png" style="opacity: 0.4;" alt="Hesk" /></div>
+                        <div class="bg-absolute"><img src="/wise/assets/img/logo/mainBackground2.png" style="opacity: 0.4;" alt="Hesk" /></div>
                     </div>
                     <div class="reg__section">
                         <div class="reg__box">

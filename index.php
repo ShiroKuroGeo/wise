@@ -62,6 +62,23 @@
             height: 30%;
             z-index: -1;
         }
+
+        .container-fluid {
+            position: relative;
+        }
+
+        .bg-absolute {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .button-container {
+            position: relative;
+            z-index: 1;
+        }
     </style>
 </head>
 
@@ -73,13 +90,17 @@
             <a href="views/wiseconcern.php" class="me-2 text-dark" onclick="sad()" style="font-size: 11px">IT Login</a>
         </div>
     </div>
+
     <div id="page-container" class="fade">
 
         <div id="home" class="content has-bg home">
 
-            <div class="container-fluid home-content text-dark row">
-                <div class="col-12">
-                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalForWise" class="btn btn-md p-5 btn-primary">IT Wise Request <br> Order Services</a>
+            <div class="container-fluid home-content text-dark row mt-1">
+                <div class="bg-absolute">
+                    <img src="assets/img/picture.webp" class="rounded rounded-5 shadow border shadow-3" alt="">
+                </div>
+                <div class="col-12 button-container">
+                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalForWise" class="btn btn-md p-3 btn-primary mt-5 px-5 shadow">IT Ticket</a>
                 </div>
             </div>
 
@@ -137,7 +158,7 @@
                                     <select class="form-control form-select11" v-model="orderRoute" id="orderRoute" @change="selectedRouteOrder">
                                         <option selected hidden value="0">Please Select A Department</option>
                                         <option value="Admin Department">Admin Department</option>
-                                        <option value="Documents Department">Documents Department</option>
+                                        <option value="Documentation Department">Documentation Department</option>
                                         <option value="Accounting Department">Accounting Department</option>
                                         <option value="Human Resource Department">Human Resource Department</option>
                                         <option value="Sales Department">Sales Department</option>
@@ -166,7 +187,7 @@
                                     <select class="form-control form-select11" v-model="requestRoute" id="requestRoute" @change="selectedRouteRequest">
                                         <option selected hidden value="0">Please Select a Branch/Department</option>
                                         <option value="Admin Department">Admin Department</option>
-                                        <option value="Documents Department">Documents Department</option>
+                                        <option value="Documentation Department">Documentation Department</option>
                                         <option value="Accounting Department">Accounting Department</option>
                                         <option value="Human Resource Department">Human Resource Department</option>
                                         <option value="Sales Department">Sales Department</option>

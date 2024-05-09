@@ -33,7 +33,11 @@ const login = createApp({
             data.append('attachment', document.getElementById('pictures').files);
             axios.post('../../../routes/users/user.php', data)
                 .then(function (r) {
-                    alert(r.data);
+                    if (r.data == 200) {
+                        window.location.reload();
+                    } else {
+                        alert(r.data + ' There is something is wrong!');
+                    }
                 });
         }
     },

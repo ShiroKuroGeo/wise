@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Wise Immersion and Study Services</title>
+    <title>IT Administration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
@@ -131,11 +131,11 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Documents" class="menu-link">
+                                    <a href="concern.php?department000=Documentation" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
-                                        <div class="menu-text">Documents</div>
+                                        <div class="menu-text">Documentation</div>
                                         <div :class="parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? 'text-end text-danger' : 'text-end'">
                                             {{ parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? parseInt(totalPendingDocumentation) + parseInt(totalDoneDocumentation) : '' }}
                                         </div>
@@ -196,6 +196,15 @@
                                 <div class="menu-text">Search Data</div>
                             </a>
                         </div>
+
+                        <div class="menu-item py-1">
+                            <a href="allData.php" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="menu-text">View All Data</div>
+                            </a>
+                        </div>
                         <div class="menu-item d-flex">
                             <a href="javascript:;" class="app-sidebar-minify-btn ms-auto d-flex align-items-center text-decoration-none" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
                         </div>
@@ -236,6 +245,19 @@
                                 </div>
                             </div>
                             <div class="col-12 shadow p-3 mt-4 border-top rounded">
+                                <span>{{ getRequestAction.length == 0 ? 'No Comment Yet or No Comment At All' : '' }}</span>
+                                <div class="row" v-for="ac of getRequestAction">
+                                    <div class="col-3">
+                                        <select class="form-select col-3" disabled>
+                                            <option :value="ac.action_taken">{{ ac.action_taken == 1 ? 'Physical' : 'Remote'}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-9">
+                                        <textarea class="form-control col-9" disabled placeholder="Comment Action Taken">{{ ac.comment_taken }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 shadow p-3 mt-4 border-top rounded">
                                 <div class="text-center py-2 mb-2 bg-primary text-white rounded">
                                     Attachment
                                 </div>
@@ -272,11 +294,27 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure want to mark as done this request?
+                                                        Enter comment to mark as done this request.
+                                                        <div class="col-12 shadow p-3 mt-4 border-top rounded">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <select class="form-select col-3" v-model="actionTaken">
+                                                                        <option value="1">Physical</option>
+                                                                        <option value="2">Remote</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-9">
+                                                                    <textarea class="form-control col-9" v-model="commentAction" placeholder="Comment Action Taken"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+                                                                <button class="btn btn-primary" type="button" :disabled="allowedChangeStatus" @click="addThisActionRequest(userInfo.request_id)">Save this action</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                        <button type="button" class="btn btn-primary" @click="pendingDoneRequest(pendingDoneStatusId)">Yes</button>
+                                                        <button type="button" class="btn btn-primary" :disabled="!allowedChangeStatus" @click="pendingDoneRequest(pendingDoneStatusId)">Yes</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,7 +337,7 @@
                             <div class="col-12 shadow p-3 border-top mt-4 rounded">
                                 <div class="row mb-3">
                                     <span class="col-6">Ticket ID's:</span>
-                                    <span class="col-6"><u>WISE-REQ-00{{userInfo.request_id}}</u></span>
+                                    <span class="col-6"><u>{{ticketCodeRequest}}{{userInfo.request_id}}</u></span>
                                 </div>
                                 <div class="row mb-3">
                                     <span class="col-6">Ticket Number:</span>

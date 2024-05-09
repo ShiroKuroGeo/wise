@@ -246,9 +246,9 @@ class dashboard
     {
         return "SELECT SUM(pendingStatus) as pendingStatus 
         FROM (
-            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Documents Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Documentation Department' AND DAY(created_at) = DAY(CURRENT_DATE())
             UNION ALL
-            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Documents Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Documentation Department' AND DAY(created_at) = DAY(CURRENT_DATE())
         ) AS addedStatus;";
     }
 
@@ -286,9 +286,9 @@ class dashboard
     {
         return "SELECT SUM(pendingStatus) as pendingStatus 
         FROM (
-            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Documents Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Documentation Department' AND DAY(created_at) = DAY(CURRENT_DATE())
             UNION ALL
-            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Documents Department' AND DAY(created_at) = DAY(CURRENT_DATE())
+            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Documentation Department' AND DAY(created_at) = DAY(CURRENT_DATE())
         ) AS addedStatus;";
     }
 
@@ -326,9 +326,9 @@ class dashboard
     {
         return "SELECT SUM(pendingStatus) as pendingStatus 
         FROM (
-            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Documents Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 0 AND department = 'Documentation Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
             UNION ALL
-            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Documents Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            SELECT COUNT(*) FROM `order` WHERE status = 0 AND department = 'Documentation Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
         ) AS addedStatus;";
     }
 
@@ -366,9 +366,9 @@ class dashboard
     {
         return "SELECT SUM(pendingStatus) as pendingStatus 
         FROM (
-            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Documents Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            SELECT COUNT(*) AS pendingStatus FROM request WHERE status = 1 AND department = 'Documentation Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
             UNION ALL
-            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Documents Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
+            SELECT COUNT(*) FROM `order` WHERE status = 1 AND department = 'Documentation Department' AND MONTH(created_at) = MONTH(CURRENT_DATE())
         ) AS addedStatus;";
     }
 
@@ -464,7 +464,7 @@ class dashboard
             SELECT EXTRACT(YEAR FROM created_at) AS year FROM `request`
             UNION
             SELECT EXTRACT(YEAR FROM created_at) AS year FROM `order`
-        ) AS combined_years ORDER BY year desc;";
+        ) AS combined_years ORDER BY year ASC;";
     }
 
     private function getAllMonthQuery()
@@ -474,7 +474,7 @@ class dashboard
             SELECT EXTRACT(month FROM created_at) AS month FROM `request`
             UNION
             SELECT EXTRACT(month FROM created_at) AS month FROM `order`
-        ) AS months ORDER BY month desc;";
+        ) AS months ORDER BY month ASC;";
     }
 
     private function getAllDepartmentQuery()

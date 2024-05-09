@@ -24,25 +24,35 @@ const login = createApp({
                 alert('Empty Field Required!');
             } else {
                 var data = new FormData();
-                data.append("method", "sendOrder");
-                data.append('department', this.department);
-                data.append('name', this.name);
-                data.append('email', this.email);
-                data.append('deadline', this.deadline);
-                data.append('message', this.message);
-                data.append('assigned', this.assignedto);
-                data.append('priority', this.priority);
-                const inputFiles = document.getElementById('pictures').files;
-                for (let i = 0; i < inputFiles.length; i++) {
-                    data.append('pictures[]', inputFiles[i]);
-                }
+                data.append("method", "verifyEmail");
+                data.append('email', vue.email);
                 axios.post('../../../routes/users/user.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            window.location.href = "/wise/assets/alert/requestordersucces.php";
+                            var data = new FormData();
+                            data.append("method", "sendOrder");
+                            data.append('department', vue.department);
+                            data.append('name', vue.name);
+                            data.append('email', vue.email);
+                            data.append('deadline', vue.deadline);
+                            data.append('message', vue.message);
+                            data.append('assigned', vue.assignedto);
+                            data.append('priority', vue.priority);
+                            const inputFiles = document.getElementById('pictures').files;
+                            for (let i = 0; i < inputFiles.length; i++) {
+                                data.append('pictures[]', inputFiles[i]);
+                            }
+                            axios.post('../../../routes/users/user.php', data)
+                                .then(function (r) {
+                                    if (r.data == 200) {
+                                        window.location.href = "/wise/assets/alert/requestordersucces.php";
+                                    } else {
+                                        alert("Something is not right!");
+                                        console.log(r.data);
+                                    }
+                                });
                         } else {
-                            alert("Something is not right!");
-                            console.log(r.data);
+                            alert('Email is not registered!');
                         }
                     });
             }

@@ -21,6 +21,12 @@ function saveUser()
     echo $admin->saveUser($_POST['fullname'], $_POST['email']);
 }
 
+function deleteAccount()
+{
+    $admin = new accountController();
+    echo $admin->deleteAccount($_POST['id']);
+}
+
 function changeInformationAboutUser()
 {
     $admin = new accountController();

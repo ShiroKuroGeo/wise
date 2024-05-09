@@ -44,3 +44,9 @@ function sendOrder()
     }
     echo $admin->sendOrder($_POST['department'], $_POST['name'], $_POST['email'], $_POST['deadline'], $_POST['message'], $_POST['assigned'], $_POST['priority'], $profiles);
 }
+
+function verifyEmail(){
+    $admin = new usercontroller();
+
+    echo $admin->verifyEmail($_POST['email']);
+}

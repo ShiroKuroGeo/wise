@@ -11,6 +11,9 @@ class usercontroller
     {
        return $this->sendOrderFunction($department, $name, $email, $deadline, $description, $assigned, $priority, $attachment);
     }
+    public function verifyEmail($email){
+        return $this->verifyEmailFunction($email);
+    }
 
     private function sendRequestFunction($department, $name, $email, $concern, $issue, $assigned, $priority, $attachment)
     {
@@ -39,6 +42,23 @@ class usercontroller
                 $attachmentJson = json_encode($attachment);
                 $stmt = $database->getConnection()->prepare($getAllUser->sendOrder());
                 $stmt->execute(array($department, $name, $email, $deadline, $description, $assigned, $priority, $attachmentJson));
+                return $getAllUser->returnValue($stmt->rowCount());
+            }else{
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function verifyEmailFunction($email)
+    {
+        try {
+            $database = new configuration();
+            if($database->getStatus()){
+                $getAllUser = new usermodel();
+                $stmt = $database->getConnection()->prepare($getAllUser->verifyEmail());
+                $stmt->execute(array($email));
                 return $getAllUser->returnValue($stmt->rowCount());
             }else{
                 return 400;

@@ -12,6 +12,11 @@ class account
         return $this->saveUserQuery();
     }
 
+    public function deleteAccount()
+    {
+        return $this->deleteAccountQuery();
+    }
+
     public function changeInformationAboutUser()
     {
         return $this->changeInformationAboutUserQuery();
@@ -20,7 +25,7 @@ class account
     //Private
     private function getInformationOfAllUserQuery()
     {
-        return "SELECT * FROM `users` ORDER BY `created_at` DESC ";
+        return "SELECT * FROM `users` ORDER BY `created_at` ASC ";
     }
     private function saveUserQuery()
     {
@@ -29,6 +34,10 @@ class account
     private function changeInformationAboutUserQuery()
     {
         return "UPDATE `users` SET `fullname`= ? ,`email`= ? ,`password`= ? ,`role`= ? ,`status`= ? WHERE `user_id` = ?";
+    }
+    private function deleteAccountQuery()
+    {
+        return "DELETE FROM `users` WHERE `user_id` = ?";
     }
 
     

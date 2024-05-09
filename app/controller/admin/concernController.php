@@ -23,6 +23,11 @@ class concernController
         return $this->pendingDoneOrderFunction($status, $id);
     }
 
+    public function addThisToAction($tableName, $table_id, $actionTaken, $commentAction)
+    {
+        return $this->addThisToActionFunction($tableName, $table_id, $actionTaken, $commentAction);
+    }
+
     public function getAllUserConcern($id)
     {
         return $this->getAllUserConcernFunction($id);
@@ -31,6 +36,26 @@ class concernController
     public function getAllUserOrder($id)
     {
         return $this->getAllUserOrderFunction($id);
+    }
+
+    public function getAllTheRequest($id)
+    {
+        return $this->getAllTheRequestFunction($id);
+    }
+
+    public function getAllTheOrder($id)
+    {
+        return $this->getAllTheOrderFunction($id);
+    }
+
+    public function getAllTotalRequest()
+    {
+        return $this->getAllTotalRequestFunction();
+    }
+
+    public function getAllTotalOrder()
+    {
+        return $this->getAllTotalOrderFunction();
     }
 
     public function getAllSearchedUserConcern($department, $assigned, $status, $priority, $month, $year)
@@ -156,7 +181,7 @@ class concernController
             echo $th;
         }
     }
-    
+
     private function getAllSearchedUserConcernFunction($department, $assigned, $status, $priority, $month, $year)
     {
         try {
@@ -189,6 +214,103 @@ class concernController
                 $result = $stmt->fetchAll();
 
                 return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+    
+    private function getAllTheRequestFunction($id)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllTheRequest());
+                $stmt->execute(array($id));
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllTheOrderFunction($id)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllTheOrder());
+                $stmt->execute(array($id));
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllTotalRequestFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllTotalRequest());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function getAllTotalOrderFunction()
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->getAllTotalOrder());
+                $stmt->execute();
+
+                $result = $stmt->fetchAll();
+
+                return json_encode($result);
+            } else {
+                return 400;
+            }
+        } catch (PDOException $th) {
+            echo $th;
+        }
+    }
+
+    private function addThisToActionFunction($tableName, $table_id, $actionTaken, $commentAction)
+    {
+        try {
+            $database = new configuration();
+            if ($database->getStatus()) {
+                $getAllUser = new concern();
+                $stmt = $database->getConnection()->prepare($getAllUser->addThisToAction());
+                $stmt->execute(array($tableName, $table_id, $actionTaken, $commentAction));
+                return $getAllUser->returnValue($stmt->rowCount());
             } else {
                 return 400;
             }

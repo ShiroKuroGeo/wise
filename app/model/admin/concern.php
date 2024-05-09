@@ -25,6 +25,10 @@ class concern
     {
         return $this->getAllUserOrderQuery();
     }
+    public function addThisToAction()
+    {
+        return $this->addThisToActionQuery();
+    }
     public function getAllSearchedUserConcern()
     {
         return $this->getAllSearchedUserConcernQuery();
@@ -32,6 +36,23 @@ class concern
     public function getAllSearchedUserJob()
     {
         return $this->getAllSearchedUserJobQuery();
+    }
+    public function getAllTheRequest()
+    {
+        return $this->getAllTheRequestQuery();
+    }
+    public function getAllTheOrder()
+    {
+        return $this->getAllTheOrderQuery();
+    }
+
+    public function getAllTotalRequest()
+    {
+        return $this->getAllTotalRequestQuery();
+    }
+    public function getAllTotalOrder()
+    {
+        return $this->getAllTotalOrderQuery();
     }
 
     private function getDepartmentOrderQuery()
@@ -67,6 +88,22 @@ class concern
     }
     private function getAllSearchedUserJobQuery(){
         return "SELECT * FROM `order` WHERE `department` = ? AND `assigned` = ? AND `status` = ? AND `priority` = ? AND MONTH(`created_at`) = ? AND YEAR(`created_at`) = ?";
+    }
+    private function addThisToActionQuery(){
+        return "INSERT INTO `action`(`table_name`, `table_id`, `action_taken`, `comment_taken`) VALUES (?,?,?,?)";
+    }
+    private function getAllTheRequestQuery(){
+        return "SELECT * FROM `action` WHERE `table_name` = 'Request' AND `table_id` = ?";
+    }
+    private function getAllTheOrderQuery(){
+        return "SELECT * FROM `action` WHERE `table_name` = 'Order' AND `table_id` = ?";
+    }
+
+    private function getAllTotalRequestQuery(){
+        return "SELECT * FROM `request` ORDER BY `created_at` ASC";
+    }
+    private function getAllTotalOrderQuery(){
+        return "SELECT * FROM `order` ORDER BY `created_at` ASC";
     }
     
     public function returnValue($result){

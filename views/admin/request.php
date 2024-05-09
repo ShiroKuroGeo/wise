@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Wise Immersion and Study Services</title>
+    <title>IT Administration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
@@ -109,11 +109,11 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a href="concern.php?department000=Documents" class="menu-link">
+                                <a href="concern.php?department000=Documentation" class="menu-link">
                                     <div class="menu-icon">
                                         <i class="fas fa-building"></i>
                                     </div>
-                                    <div class="menu-text">Documents</div>
+                                    <div class="menu-text">Documentation</div>
                                 </a>
                             </div>
                             <div class="menu-item">

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Wise Immersion and Study Services</title>
+    <title>Wise Request</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
@@ -165,6 +165,7 @@
                                     <label class="col-lg-4 col-form-label form-label">&nbsp;</label>
                                     <div class="col-lg-8">
                                         <button type="button" @click="sendRequest" class="btn btn-primary col-5 float-end">Send Concern</button>
+                                        <a href="../../index.php" class="btn btn-secondary col-3 me-2 float-end">Close</a>
                                     </div>
                                 </div>
                             </form>

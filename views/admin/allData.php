@@ -7,30 +7,19 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
+    <link rel="icon" type="image/x-icon" href="/wise/assets/img/logo/wiselogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
     <link href="../../assets/css/vendor.min.css" rel="stylesheet" />
     <link href="../../assets/css/color.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="/wise/assets/img/logo/wiselogo.png">
 
     <link href="../../assets/plugin/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="../../assets/plugin/responsive.bootstrap5.min.css" rel="stylesheet" />
     <style>
-        dl {
-            margin-bottom: 50px;
-        }
-
-        dl dt {
-            background: #5f9be3;
-            color: #fff;
-            float: left;
-            font-weight: bold;
-            margin-right: 10px;
-            padding: 5px;
-            width: 100px;
-        }
-
-        dl dd {
-            margin: 2px 0;
+        .truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 10ch;
         }
     </style>
 </head>
@@ -187,7 +176,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="menu-item py-1">
                             <a href="search.php" class="menu-link">
                                 <div class="menu-icon">
@@ -197,7 +185,7 @@
                             </a>
                         </div>
 
-                        <div class="menu-item py-1">
+                        <div class="menu-item py-1 active">
                             <a href="allData.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-database"></i>
@@ -218,143 +206,227 @@
             <div class="app-sidebar-bg" data-bs-theme="dark"></div>
             <div class="app-sidebar-mobile-backdrop"><a href="#" data-dismiss="app-sidebar-mobile" class="stretched-link"></a></div>
 
-
-            <div id="content" class="app-content" v-for="userInfo of userOrderInformations">
+            <div id="content" class="app-content">
+                <div class="modal fade text-" id="markasdoneRequest" tabindex="-1" aria-labelledby="markasdoneRequestLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="markasdoneRequestLabel">Request Update</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure want to mark as done this request?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-primary" @click="pendingDoneRequest(pendingDoneStatusId)">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="markasdoneOrder" tabindex="-1" aria-labelledby="markasdoneOrderLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="markasdoneOrderLabel">Order Update</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure want to mark as done this order?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-primary" @click="pendingDoneOrder(pendingDoneStatusId)">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h1 class="page-header"><span class="fw-bolder text-capitalize"><small> Tables </small></h1>
+                    <div class="col-2">
+                        <select name="selection" id="selection" class="form-control ">
+                            <option value="2">Concern</option>
+                            <option value="1">Job Order</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="panel panel-inverse">
 
                     <div class="panel-heading">
-                        <h4 class="panel-title" id="concernTitle">Information Order</h4>
+                        <h4 class="panel-title" id="concernTitle">Employee Concern - Table - Concern </h4>
+                        <h4 class="panel-title visually-hidden" id="jobOrderTitle">Employee Concern - Table - Job</h4>
                         <div class="panel-heading-btn">
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
                         </div>
                     </div>
-                    <div class="panel-body p-2 py-4 row justify-content-between">
-                        <div class="col-7 p-3">
-                            <div class="col-12 shadow p-3 border-top rounded">
-                                <h5 class="fw-bolder">{{userInfo.name}}</h5>
-                                <span class="text-primary">Email:</span> {{userInfo.email}}
-                            </div>
-                            <div class="col-12 shadow p-3 mt-4 border-top rounded">
-                                <div class="text-center py-2 mb-2 bg-primary text-white rounded">
-                                    Messages
-                                </div>
-                                <div class="border p-1 rounded border-2 border-black pb-3 " style="height: 100px;">
-                                    {{userInfo.issue}}
-                                </div>
-                            </div>
-                            <div class="col-12 shadow p-3 mt-4 border-top rounded">
-                                <span>{{ getOrderAction.length == 0 ? 'No Comment Yet or No Comment At All' : '' }}</span>
-                                <div class="row" v-for="ac of getOrderAction">
-                                    <div class="col-3">
-                                        <select class="form-select col-3" disabled>
-                                            <option :value="ac.action_taken">{{ ac.action_taken == 1 ? 'Physical' : 'Remote'}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-9">
-                                        <textarea class="form-control col-9" disabled placeholder="Comment Action Taken">{{ ac.comment_taken }}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 shadow p-3 mt-4 border-top rounded">
-                                <div class="text-center py-2 mb-2 bg-primary text-white rounded">
-                                    Attachment
-                                </div>
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div v-for="(pic, index) in userPictureRequest" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
-                                            <img :src="'../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
+                    <div class="panel-body">
+                        <table id="data-table-default" class="table table-striped table-bordered align-middle w-100 text-nowrap">
 
-                                        </div>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 p-3">
-                            <div class="col-12 shadow p-3 border-top rounded">
-                                <div class="row mb-3">
-                                    <span class="col-6">Ticket Status:</span>
-                                    <span :class="userInfo.status == 0 ? 'text-danger col-6' : 'text-primary col-6'">
-                                        {{userInfo.status == 0 ? 'Pending' : 'Done'}}<br>
-                                        <a :class="userInfo.status == 0 ? 'btn btn-sm btn-link' : 'visually-hidden'" @click="getIdMarkAsDone(userInfo.order_id)" data-bs-toggle="modal" data-bs-target="#markasdoneRequest">Mark as Done</a>
-                                        <div class="modal fade" id="markasdoneRequest" tabindex="-1" aria-labelledby="markasdoneRequestLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
+                            <thead class="first" id="concernTableHead">
+                                <tr>
+                                    <th width="15%" data-orderable="false">Fullname</th>
+                                    <th class="text-nowrap">Email</th>
+                                    <th class="text-nowrap">Department</th>
+                                    <th class="text-nowrap">Concern</th>
+                                    <th class="text-nowrap">Message</th>
+                                    <th class="text-nowrap">Priority</th>
+                                    <th class="text-nowrap">Status</th>
+                                    <th class="text-nowrap">Created</th>
+                                    <th width="15%">Pictures</th>
+                                    <th width="15%">View Information</th>
+                                </tr>
+                            </thead>
+
+                            <thead class="visually-hidden" id="jobOrderTableHead">
+                                <tr>
+                                    <th width="15%" data-orderable="false">Fullname</th>
+                                    <th class="text-nowrap">Department</th>
+                                    <th class="text-nowrap">Email</th>
+                                    <th class="text-nowrap">Deadline</th>
+                                    <th class="text-nowrap">Priority</th>
+                                    <th class="text-nowrap">Status</th>
+                                    <th class="text-nowrap">Created</th>
+                                    <th width="15%">Picture</th>
+                                    <th width="15%">View Information</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="first" id="concernTableBody">
+                                <tr class="odd gradeX" v-for="req of allTotalRequest">
+                                    <td class="truncate">{{ req.name }}</td>
+                                    <td class="truncate">{{ req.email }}</td>
+                                    <td class="truncate">{{ req.department }}</td>
+                                    <td class="truncate">{{ req.concern }}</td>
+                                    <td class="truncate">{{ req.issue }}</td>
+                                    <td class="truncate">{{ req.priority }}</td>
+                                    <td>
+                                        <span :class="req.status == 0 ? 'text-danger' : 'text-primary'">{{ req.status == 0 ? 'Pending' : 'Done'}}</span>
+                                    </td>
+                                    <td>{{ getDateToString(req.created_at) }}</td>
+                                    <td>
+                                        <a href="#ticketid" class="btn col-12" data-bs-toggle="modal" @click="viewPictureRequest(req.request_id)">View</a>
+                                        <div class="modal fade" id="ticketid">
+                                            <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="markasdoneRequestLabel">Order Update</h5>
+                                                        <h5 class="modal-title" id="modal-dialogLabel">Pictures for Concern </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        Enter comment to mark as done this Order.
-                                                        <div class="col-12 shadow p-3 mt-4 border-top rounded">
-                                                            <div class="row">
-                                                                <div class="col-3">
-                                                                    <select class="form-select col-3" v-model="actionTaken">
-                                                                        <option value="1">Physical</option>
-                                                                        <option value="2">Remote</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-9">
-                                                                    <textarea class="form-control col-9" v-model="commentAction" placeholder="Comment Action Taken"></textarea>
+                                                    <div class="modal-body row">
+                                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                <div v-for="(pic, index) in request_firstpic" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
+                                                                    <img :src="'../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
                                                                 </div>
                                                             </div>
-                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-                                                                <button class="btn btn-primary" type="button" :disabled="allowedChangeStatus" @click="addThisActionOrder(userInfo.order_id)">Save this action</button>
-                                                            </div>
+                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                        <button type="button" class="btn btn-primary" :disabled="!allowedChangeStatus" @click="pendingDoneOrder(pendingDoneStatusId)">Yes</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a :href="'requestView.php?id='+wordToCode(req.request_id)">View</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody class="visually-hidden" id="jobOrderTableBody">
+                                <tr class="odd gradeX" v-for="ord of allTotalOrder">
+                                    <td class="truncate">{{ ord.name }}</td>
+                                    <td class="truncate">{{ ord.department }}</td>
+                                    <td class="truncate">{{ ord.email }}</td>
+                                    <td class="truncate">{{ getDateToString(ord.deadline) }}</td>
+                                    <td class="truncate">{{ ord.priority }}</td>
+                                    <td>
+                                        <span :class="ord.status == 0 ? 'text-danger' : 'text-primary'">{{ ord.status == 0 ? 'Pending' : 'Done' }}</span>
+                                    </td>
+                                    <td>{{ getDateToString(ord.created_at) }}</td>
+                                    <td>
+                                        <a href="#concernid" class="btn col-12" data-bs-toggle="modal" @click="viewPictureOrder(ord.order_id)">View</a>
+                                        <div class="modal fade" id="concernid">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modal-dialogLabel">Pictures for Concern </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body row">
+                                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                <div v-for="(pic, index) in request_firstpic" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
+                                                                    <img :src="'../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
+                                                                </div>
+                                                            </div>
+                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Previous</span>
+                                                            </button>
+                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                <span class="visually-hidden">Next</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <a :href="'orderView.php?id='+wordToCode(ord.order_id)">View</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal fade" id="modal-dialog1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">View Information</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                 </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Department:</span>
-                                    <span class="col-6">{{ userInfo.department }}</span>
+                                <div class="modal-body">
+                                    <div id="concern"></div>
                                 </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Priority:</span>
-                                    <span class="col-6">{{userInfo.priority}}</span>
-                                </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Due Date</span>
-                                    <span class="col-6">{{getDateToString(userInfo.deadline)}}</span>
+                                <div class="modal-footer">
+                                    <a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                                    <a href="javascript:;" class="btn btn-success">Okay</a>
                                 </div>
                             </div>
-                            <div class="col-12 shadow p-3 border-top mt-4 rounded">
-                                <div class="row mb-3">
-                                    <span class="col-6">Ticket ID's:</span>
-                                    <span class="col-6"><u>{{ticketCodeOrder}}{{userInfo.order_id}}</u></span>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="modal-dialog2">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">View Information</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
                                 </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Ticket Number:</span>
-                                    <span class="col-6">{{userInfo.order_id}}</span>
+                                <div class="modal-body">
+                                    <div id="concern"></div>
                                 </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Created at :</span>
-                                    <span class="col-6">{{getDateToString(userInfo.created_at)}}</span>
+                                <div class="modal-footer">
+                                    <a href="javascript:;" class="btn btn-white" data-bs-dismiss="modal">Close</a>
+                                    <a href="javascript:;" class="btn btn-success">Okay</a>
                                 </div>
-                                <div class="row mb-3">
-                                    <span class="col-6">Assigned To:</span>
-                                    <span class="col-6">{{userInfo.assigned}}</span>
-                                </div>
-                            </div>
-                            <div class="mt-4 text-end">
-                                <button class="btn btn-secondary col-5" onclick="history.back()">Close</button>
                             </div>
                         </div>
                     </div>
@@ -405,12 +477,14 @@
         <script src="../../vue/vues/vue.3.js"></script>
         <script src="../../vue/admin/wiseconcern/concern.js"></script>
         <script>
+            function logout() {
+                window.location.href = '../../app/session/logout.php';
+            }
             $(document).ready(function() {
                 $('#selection').on('change', function() {
                     var selectedOption = $(this).val();
 
                     if (selectedOption == 1) {
-
                         $('#concernTableBody').addClass('visually-hidden');
                         $('#jobOrderTableBody').removeClass('visually-hidden');
 
@@ -419,9 +493,7 @@
 
                         $('#concernTableHead').addClass('visually-hidden');
                         $('#jobOrderTableHead').removeClass('visually-hidden');
-
                     } else if (selectedOption == 2) {
-
                         $('#concernTableBody').removeClass('visually-hidden');
                         $('#jobOrderTableBody').addClass('visually-hidden');
 
@@ -430,14 +502,29 @@
 
                         $('#concernTableHead').removeClass('visually-hidden');
                         $('#jobOrderTableHead').addClass('visually-hidden');
-
                     }
                 });
             });
 
-            function logout() {
-                window.location.href = '../../app/session/logout.php';
-            }
+            $('#modal-dialog1').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var accountId = button.data('concern');
+
+                $('#concern').text(accountId);
+
+            });
+
+            $('#modal-dialog2').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var accountId = button.data('concern');
+
+                $('#concern').text(accountId);
+
+            });
+
+            $('#data-table-default').DataTable({
+                responsive: true
+            });
         </script>
         <script type="9dd2961859eb1e28de60110d-text/javascript">
             window.dataLayer = window.dataLayer || [];

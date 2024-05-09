@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Wise Immersion and Study Services</title>
+    <title>IT Administration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content name="description" />
     <meta content name="author" />
@@ -114,11 +114,11 @@
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a href="concern.php?department000=Documents" class="menu-link">
+                                        <a href="concern.php?department000=Documentation" class="menu-link">
                                             <div class="menu-icon">
                                                 <i class="fas fa-building"></i>
                                             </div>
-                                            <div class="menu-text">Documents</div>
+                                            <div class="menu-text">Documentation</div>
                                             <div :class="parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? 'text-end text-danger' : 'text-end'">
                                                 {{ parseInt(totalPendingDocumentation) || parseInt(totalDoneDocumentation) !== 0 ? parseInt(totalPendingDocumentation) + parseInt(totalDoneDocumentation) : '' }}
                                             </div>
@@ -177,6 +177,15 @@
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                     </div>
                                     <div class="menu-text">Search Data</div>
+                                </a>
+                            </div>
+
+                            <div class="menu-item py-1">
+                                <a href="allData.php" class="menu-link">
+                                    <div class="menu-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="menu-text">View All Data</div>
                                 </a>
                             </div>
 
@@ -264,10 +273,34 @@
                                     <td>{{ u.role == 1 ? 'Admin' : 'Task User' }}</td>
                                     <td>{{ u.status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>{{ getDateToString(u.created_at) }}</td>
-                                    <td><button @click="checkId(u.user_id)" data-bs-toggle="modal" data-bs-target="#updateUser" class="btn btn-sm btn-primary col-12">Update</button></td>
+                                    <td class="d-flex justify-content-between">
+                                        <button @click="checkId(u.user_id)" data-bs-toggle="modal" data-bs-target="#updateUser" class="btn btn-sm btn-primary col-6 me-1">Update</button>
+                                        <button @click="checkId(u.user_id)" data-bs-toggle="modal" data-bs-target="#deleteUser" class="btn btn-sm btn-danger col-6">Delete</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteUserLabel">Delete User Account</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modal-body">
+                                        <h4 class="text-danger">
+                                            Are you sure want to delete <span class="text-primary">{{upFullname}}</span> user account?
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" @click="deleteAccount(upUser_id)">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal fade" id="updateUser" tabindex="-1" aria-labelledby="updateUserLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">

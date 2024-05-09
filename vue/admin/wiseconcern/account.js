@@ -100,9 +100,9 @@ const account = createApp({
                 axios.post('../../routes/admin/account.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            alert('User will be added in the list!');
+                            window.location.reload();
                         } else {
-                            console.log(r.data);
+                            alert(r.data + ' There is something is wrong!');
                         }
                     });
             }
@@ -127,6 +127,21 @@ const account = createApp({
                     }
                 });
         },
+        deleteAccount(upUser_id) {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "deleteAccount");
+            data.append("id", upUser_id);
+            axios.post('../../routes/admin/account.php', data)
+                .then(function (r) {
+                    if (r.data == 200) {
+                        window.location.reload();
+                    } else {
+                        alert(r.data + ' There is something is wrong!');
+                    }
+                });
+        },
         changeInformationAboutUser() {
             const vue = this;
 
@@ -141,9 +156,9 @@ const account = createApp({
             axios.post('../../routes/admin/account.php', data)
                 .then(function (r) {
                     if (r.data == 200) {
-                        alert('All Sets!');
+                        window.location.reload();
                     } else {
-                        alert('Something is not right!');
+                        alert(r.data + ' There is something is wrong!');
                     }
                 });
         },

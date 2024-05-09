@@ -9,6 +9,8 @@ const account = createApp({
             userPictureRequest: [],
             getTotalDepartmentRequest: [],
             userRequestInformations: [],
+            allTotalRequest: [],
+            allTotalOrder: [],
             allSearchedUserConcern: [],
             allYearLevel: [],
             userOrderInformations: [],
@@ -16,11 +18,17 @@ const account = createApp({
             allDeparment: [],
             allAssigned: [],
             allPriority: [],
+            getOrderAction: [],
+            getRequestAction: [],
             departmentSearch: 'Documents Department',
             statusSearch: 0,
             assignedSearch: 'John Dizon',
+            ticketCodeRequest: 'WISE-REQ-00',
+            ticketCodeOrder: 'WISE-REQ-00',
             prioritySearch: 'Hard',
             monthSearch: 5,
+            actionTaken: 1,
+            commentAction: '',
             yearSearch: 2024,
             totalPendingAdmin: 0,
             selectionTable: 2,
@@ -33,6 +41,7 @@ const account = createApp({
             totalDoneDocumentation: 0,
             totalDoneHuman: 0,
             totalDoneAccounting: 0,
+            allowedChangeStatus: false,
             pendingDoneStatus: 0,
             pendingDoneStatusId: 0,
             totalPendingSalesByDay: 0,
@@ -323,6 +332,56 @@ const account = createApp({
                     }
                 });
         },
+        orderActionInformation() {
+            const vue = this;
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            var data = new FormData();
+            data.append("method", "getAllTheOrder");
+            data.append("id", vue.codeToWord(id));
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.getOrderAction = [];
+
+                    for (var v of r.data) {
+                        vue.getOrderAction.push({
+                            action_id: v.action_id,
+                            table_name: v.table_name,
+                            table_id: v.table_id,
+                            action_taken: v.action_taken,
+                            comment_taken: v.comment_taken,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        requestActionInformation() {
+            const vue = this;
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            var data = new FormData();
+            data.append("method", "getAllTheRequest");
+            data.append("id", vue.codeToWord(id));
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.getRequestAction = [];
+
+                    for (var v of r.data) {
+                        vue.getRequestAction.push({
+                            action_id: v.action_id,
+                            table_name: v.table_name,
+                            table_id: v.table_id,
+                            action_taken: v.action_taken,
+                            comment_taken: v.comment_taken,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
         getDepartmentRequest() {
             const vue = this;
             const urlParams = new URLSearchParams(window.location.search);
@@ -366,10 +425,9 @@ const account = createApp({
                 axios.post('../../routes/admin/concern.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            alert('Succesfully Updated!');
-                            vue.requestInformation();
+                            window.location.reload();
                         } else {
-                            alert('Haysht senshia!');
+                            alert(r.data + ' There is something is wrong!');
                         }
                     });
             } else {
@@ -380,10 +438,9 @@ const account = createApp({
                 axios.post('../../routes/admin/concern.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            alert('Succesfully Updated!');
-                            vue.requestInformation();
+                            window.location.reload();
                         } else {
-                            alert('Haysht senshia!');
+                            alert(r.data + ' There is something is wrong!');
                         }
                     });
             }
@@ -446,10 +503,9 @@ const account = createApp({
                 axios.post('../../routes/admin/concern.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            alert('Succesfully Updated!');
-                            vue.requestInformation();
+                            window.location.reload();
                         } else {
-                            alert('Haysht senshia!');
+                            alert(r.data + ' There is something is wrong!');
                         }
                     });
             } else {
@@ -460,10 +516,9 @@ const account = createApp({
                 axios.post('../../routes/admin/concern.php', data)
                     .then(function (r) {
                         if (r.data == 200) {
-                            alert('Succesfully Updated!');
-                            vue.requestInformation();
+                            window.location.reload();
                         } else {
-                            alert('Haysht senshia!');
+                            alert(r.data + ' There is something is wrong!');
                         }
                     });
             }
@@ -673,7 +728,97 @@ const account = createApp({
                     }
                 });
         },
+        addThisActionRequest(request_id) {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "addThisToAction");
+            data.append("tableName", 'Request');
+            data.append("table_id", request_id);
+            data.append("actionTaken", vue.actionTaken);
+            data.append("commentAction", vue.commentAction);
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    if (r.data == 200) {
+                        vue.allowedChangeStatus = true;
+                    } else {
+                        alert(r.data + ' There is something is wrong!');
+                    }
+                });
+        },
+        addThisActionOrder(order_id) {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "addThisToAction");
+            data.append("tableName", 'Order');
+            data.append("table_id", order_id);
+            data.append("actionTaken", vue.actionTaken);
+            data.append("commentAction", vue.commentAction);
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    if (r.data == 200) {
+                        vue.allowedChangeStatus = true;
+                    } else {
+                        alert(r.data + ' There is something is wrong!');
+                    }
+                });
+        },
+        getAllTotalRequest() {
+            const vue = this;
+            var data = new FormData();
+            data.append("method", "getAllTotalRequest");
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allTotalRequest = [];
+
+                    for (var v of r.data) {
+                        vue.allTotalRequest.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllTotalOrder() {
+            const vue = this;
+            var data = new FormData();
+            data.append("method", "getAllTotalOrder");
+            axios.post('../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allTotalOrder = [];
+
+                    for (var v of r.data) {
+                        vue.allTotalOrder.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
         resetFunction() {
+            this.getAllTotalRequest();
+            this.getAllTotalOrder();
             this.getDepartment();
             this.getAllMonth();
             this.getAllYearLevel();
@@ -683,6 +828,8 @@ const account = createApp({
             this.getAllPriority();
             this.getDepartmentRequest();
             this.getTotalPendingAdmin();
+            this.orderActionInformation();
+            this.requestActionInformation();
             this.getTotalPendingDocumentation();
             this.getTotalPendingHuman();
             this.getTotalPendingAccounting();

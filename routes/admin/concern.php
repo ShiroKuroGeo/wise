@@ -40,6 +40,28 @@ function getAllUserOrder()
     echo $admin->getAllUserOrder($_POST['id']);
 }
 
+function getAllTheRequest()
+{
+    $admin = new concernController();
+    echo $admin->getAllTheRequest($_POST['id']);
+}
+function getAllTheOrder()
+{
+    $admin = new concernController();
+    echo $admin->getAllTheOrder($_POST['id']);
+}
+
+function getAllTotalRequest()
+{
+    $admin = new concernController();
+    echo $admin->getAllTotalRequest();
+}
+function getAllTotalOrder()
+{
+    $admin = new concernController();
+    echo $admin->getAllTotalOrder();
+}
+
 function getAllSearchedUserConcern()
 {
     $admin = new concernController();
@@ -49,4 +71,9 @@ function getAllSearchedUserJob()
 {
     $admin = new concernController();
     echo $admin->getAllSearchedUserJob($_POST['department'], $_POST['assigned'], $_POST['status'], $_POST['priority'], $_POST['month'], $_POST['year']);
+}
+function addThisToAction()
+{
+    $admin = new concernController();
+    echo $admin->addThisToAction($_POST['tableName'], $_POST['table_id'], $_POST['actionTaken'], $_POST['commentAction']);
 }
