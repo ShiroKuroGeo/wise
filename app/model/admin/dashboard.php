@@ -212,14 +212,13 @@ class dashboard
     //Private
     private function getAllOrdersQuery()
     {
-        return "SELECT * FROM `order`";
+        return "SELECT * FROM `order` ORDER BY `created_at` desc";
     }
 
     private function getAllRequestQuery()
     {
-        return "SELECT * FROM `request`";
+        return "SELECT * FROM `request` ORDER BY `created_at` desc";
     }
-
 
     private function getTotalDailyPendingRequestQuery()
     {

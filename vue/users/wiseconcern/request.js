@@ -8,7 +8,7 @@ const login = createApp({
             email: '',
             concern: 0,
             message: '',
-            assignedto: 'John Dizon',
+            assignedto: 'IT Department',
             priority: '',
         }
     },

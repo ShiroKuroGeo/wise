@@ -61,6 +61,26 @@ function getAllTotalOrder()
     $admin = new concernController();
     echo $admin->getAllTotalOrder();
 }
+function getAllRequestPending()
+{
+    $admin = new concernController();
+    echo $admin->getAllRequestPending();
+}
+function getAllOrderPending()
+{
+    $admin = new concernController();
+    echo $admin->getAllOrderPending();
+}
+function getAllRequestDone()
+{
+    $admin = new concernController();
+    echo $admin->getAllRequestDone();
+}
+function getAllOrderDone()
+{
+    $admin = new concernController();
+    echo $admin->getAllOrderDone();
+}
 
 function getAllSearchedUserConcern()
 {

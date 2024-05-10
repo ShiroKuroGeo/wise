@@ -241,7 +241,7 @@ include('../../app/session/setSession.php');
                                 <p>{{ totalRequest }}</p>
                             </div>
                             <div class="stats-link">
-                                <a href="concern.php?department000=Admin">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                <a href="dashboardsc/allRequests.php">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -253,8 +253,8 @@ include('../../app/session/setSession.php');
                                 <h4>TOTAL JOB</h4>
                                 <p>{{ totalOrder }}</p>
                             </div>
-                            <div class=" stats-link">
-                                <a href="concern.php?department000=Admin">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                            <div class="stats-link">
+                                <a href="dashboardsc/allOrders.php">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -267,7 +267,7 @@ include('../../app/session/setSession.php');
                                 <p>{{ totalDailyPendingRequest + totalDailyPendingOrder }}</p>
                             </div>
                             <div class=" stats-link">
-                                <a href="concern.php?department000=Admin">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                <a href="dashboardsc/allPending.php">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -280,7 +280,7 @@ include('../../app/session/setSession.php');
                                 <p>{{ totalDailyDoneRequest + totalDailyDoneOrder  }}</p>
                             </div>
                             <div class="stats-link">
-                                <a href="concern.php?department000=Admin">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
+                                <a href="dashboardsc/allDone.php">View Detail <i class="fa fa-arrow-alt-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -289,7 +289,7 @@ include('../../app/session/setSession.php');
 
                 <div class="row">
                     <h1 class="my-4 mt-5">Daily ( <span class="text-primary"><?php echo $current_day; ?></span> )</h1>
-                    <div class="col-xl-6">
+                    <div class="col-xl-4">
                         <div class="panel panel-inverse">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Concern and Request Analytics (Daily)</h4>
@@ -299,10 +299,10 @@ include('../../app/session/setSession.php');
                                     <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
                                 </div>
                             </div>
-                            <canvas id="interactive-chart2" height="300"></canvas>
+                            <canvas id="interactive-chart2" height="250"></canvas>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <div class="panel panel-inverse">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Department Pending ( Daily Total ) - <?php echo $current_day; ?></h4>
@@ -350,7 +350,7 @@ include('../../app/session/setSession.php');
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-4">
                         <div class="panel panel-inverse">
                             <div class="panel-heading">
                                 <h4 class="panel-title">Department Done ( Daily Total ) - <?php echo $current_day; ?></h4>

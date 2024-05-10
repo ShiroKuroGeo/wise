@@ -135,31 +135,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
-                                    <label class="col-lg-4 col-form-label form-label" for="message">Assigned To :</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="assignedto" name="assignedto" v-model="assignedto"></input>
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-3">
                                     <label class="col-lg-4 col-form-label form-label" for="message">Priority <span class="text-danger">*</span></label>
                                     <div class="col-lg-8 d-flex">
                                         <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="easyPriority" value="Easy" onchange="handleCheckboxChange('easyPriority')">
-                                            <label class="form-check-label" for="easyPriority">Easy</label>
+                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="neededPriority" value="Needed" onchange="handleCheckboxChange('neededPriority')">
+                                            <label class="form-check-label" for="neededPriority">Needed</label>
                                         </div>
                                         <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="moderatePriority" value="Moderate" onchange="handleCheckboxChange('moderatePriority')">
-                                            <label class="form-check-label" for="moderatePriority">Moderate</label>
-                                        </div>
-                                        <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="hardPriority" value="Hard" onchange="handleCheckboxChange('hardPriority')">
-                                            <label class="form-check-label" for="hardPriority">Hard</label>
+                                            <input class="form-check-input" type="radio" v-model="priority" name="priority" id="urgentPriority" value="urgent" onchange="handleCheckboxChange('urgentPriority')">
+                                            <label class="form-check-label" for="urgentPriority">Urgent</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group row mb-3">
-                                    <label class="col-lg-4 col-form-label form-label" for="attachment">Attachment :</label>
+                                    <label class="col-lg-4 col-form-label form-label" for="attachment">Attachment:</label>
                                     <div class="col-lg-8">
                                         <div class="drop-zone border p-4 bg-light" id="drop-zone" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
                                             <p>Drag & Drop files here or click to select</p>

@@ -54,6 +54,22 @@ class concern
     {
         return $this->getAllTotalOrderQuery();
     }
+    public function getAllRequestPending()
+    {
+        return $this->getAllRequestPendingQuery();
+    }
+    public function getAllOrderPending()
+    {
+        return $this->getAllOrderPendingQuery();
+    }
+    public function getAllRequestDone()
+    {
+        return $this->getAllRequestDoneQuery();
+    }
+    public function getAllOrderDone()
+    {
+        return $this->getAllOrderDoneQuery();
+    }
 
     private function getDepartmentOrderQuery()
     {
@@ -100,10 +116,24 @@ class concern
     }
 
     private function getAllTotalRequestQuery(){
-        return "SELECT * FROM `request` ORDER BY `created_at` ASC";
+        return "SELECT * FROM `request` ORDER BY `created_at` DESC";
     }
     private function getAllTotalOrderQuery(){
-        return "SELECT * FROM `order` ORDER BY `created_at` ASC";
+        return "SELECT * FROM `order` ORDER BY `created_at` DESC";
+    }
+
+    private function getAllRequestPendingQuery(){
+        return "SELECT * FROM `request` WHERE `status` = 0 ORDER BY `created_at` DESC";
+    }
+    private function getAllOrderPendingQuery(){
+        return "SELECT * FROM `order` WHERE `status` = 0 ORDER BY `created_at` DESC";
+    }
+
+    private function getAllRequestDoneQuery(){
+        return "SELECT * FROM `request` WHERE `status` = 1 ORDER BY `created_at` DESC";
+    }
+    private function getAllOrderDoneQuery(){
+        return "SELECT * FROM `order` WHERE `status` = 1 ORDER BY `created_at` DESC";
     }
     
     public function returnValue($result){

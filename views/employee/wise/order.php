@@ -90,12 +90,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
-                                    <label class="col-lg-4 col-form-label form-label" for="message">Assigned To :</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="assignedto" v-model="assignedto">
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-3">
                                     <label class="col-lg-4 col-form-label form-label" for="message">Priority</label>
                                     <div class="col-lg-8 d-flex">
                                         <div class="form-check me-3">

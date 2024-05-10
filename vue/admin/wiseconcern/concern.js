@@ -14,15 +14,21 @@ const account = createApp({
             allSearchedUserConcern: [],
             allYearLevel: [],
             userOrderInformations: [],
+            allOrdersDone: [],
+            allRequestsDone: [],
             allSearchedUserJob: [],
             allDeparment: [],
             allAssigned: [],
+            allOrdersPending: [],
+            allRequestsPending: [],
             allPriority: [],
+            allOrders: [],
+            allRequests: [],
             getOrderAction: [],
             getRequestAction: [],
             departmentSearch: 'Documents Department',
             statusSearch: 0,
-            assignedSearch: 'John Dizon',
+            assignedSearch: 'IT Department',
             ticketCodeRequest: 'WISE-REQ-00',
             ticketCodeOrder: 'WISE-REQ-00',
             prioritySearch: 'Hard',
@@ -854,6 +860,168 @@ const account = createApp({
             }
 
         },
+        getAllOrders() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllOrders");
+            axios.post('../../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allOrders = [];
+
+                    for (var v of r.data) {
+                        vue.allOrders.push({
+                            order_id: v.order_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            deadline: v.deadline,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllRequest() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllRequest");
+            axios.post('../../../routes/admin/route.php', data)
+                .then(function (r) {
+                    vue.allRequests = [];
+
+                    for (var v of r.data) {
+                        vue.allRequests.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllOrdersPending() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllOrderPending");
+            axios.post('../../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allOrdersPending = [];
+
+                    for (var v of r.data) {
+                        vue.allOrdersPending.push({
+                            order_id: v.order_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            deadline: v.deadline,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllRequestPending() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllRequestPending");
+            axios.post('../../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allRequestsPending = [];
+
+                    for (var v of r.data) {
+                        vue.allRequestsPending.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllOrdersDone() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllOrderDone");
+            axios.post('../../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allOrdersDone = [];
+
+                    for (var v of r.data) {
+                        vue.allOrdersDone.push({
+                            order_id: v.order_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            deadline: v.deadline,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
+        getAllRequestDone() {
+            const vue = this;
+
+            var data = new FormData();
+            data.append("method", "getAllRequestDone");
+            axios.post('../../../routes/admin/concern.php', data)
+                .then(function (r) {
+                    vue.allRequestsDone = [];
+
+                    for (var v of r.data) {
+                        vue.allRequestsDone.push({
+                            request_id: v.request_id,
+                            department: v.department,
+                            name: v.name,
+                            email: v.email,
+                            concern: v.concern,
+                            issue: v.issue,
+                            assigned: v.assigned,
+                            priority: v.priority,
+                            attachment: v.attachment,
+                            status: v.status,
+                            created_at: v.created_at,
+                            updated_at: v.updated_at,
+                        })
+                    }
+                });
+        },
         resetFunction() {
             this.getAllTotalRequest();
             this.getAllTotalOrder();
@@ -866,6 +1034,8 @@ const account = createApp({
             this.getAllPriority();
             this.getDepartmentRequest();
             this.getTotalPendingAdmin();
+            this.getAllOrdersDone();
+            this.getAllRequestDone();
             this.orderActionInformation();
             this.requestActionInformation();
             this.getTotalPendingDocumentation();
@@ -883,6 +1053,10 @@ const account = createApp({
             this.getTotalDoneMarketingByDay();
             this.getTotalDoneMarketingByMonth();
             this.getTotalPendingMarketingByMonth();
+            this.getAllOrders();
+            this.getAllRequest();
+            this.getAllOrdersPending();
+            this.getAllRequestPending();
         },
     },
     created: function () {

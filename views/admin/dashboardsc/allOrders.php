@@ -9,11 +9,11 @@
     <meta content name="author" />
     <link rel="icon" type="image/x-icon" href="/wise/assets/img/logo/wiselogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
-    <link href="../../assets/css/vendor.min.css" rel="stylesheet" />
-    <link href="../../assets/css/color.min.css" rel="stylesheet" />
+    <link href="../../../assets/css/vendor.min.css" rel="stylesheet" />
+    <link href="../../../assets/css/color.min.css" rel="stylesheet" />
 
-    <link href="../../assets/plugin/dataTables.bootstrap5.min.css" rel="stylesheet" />
-    <link href="../../assets/plugin/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link href="../../../assets/plugin/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="../../../assets/plugin/responsive.bootstrap5.min.css" rel="stylesheet" />
     <style>
         .truncate {
             white-space: nowrap;
@@ -36,8 +36,8 @@
             <div id="header" class="app-header">
 
                 <div class="navbar-header">
-                    <a href="dashboard.php" class="navbar-brand">
-                        <img src="../../assets/img/logo/wiselogo.png" alt="">
+                    <a href="../dashboard.php" class="navbar-brand">
+                        <img src="../../../assets/img/logo/wiselogo.png" alt="">
                     </a>
                     <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                         <span class="icon-bar"></span>
@@ -57,7 +57,7 @@
                             <a href="javascript:;" class="menu-profile-link" data-toggle="app-sidebar-profile" data-target="#appSidebarProfileMenu">
                                 <div class="menu-profile-cover with-shadow"></div>
                                 <div class="menu-profile-image">
-                                    <img src="../../assets/img/logo/wiselogo.png" alt />
+                                    <img src="../../../assets/img/logo/wiselogo.png" alt />
                                 </div>
                                 <div class="menu-profile-info">
                                     <div class="d-flex align-items-center">
@@ -81,7 +81,7 @@
                         </div>
                         <div class="menu-header">Navigation</div>
                         <div class="menu-item py-1">
-                            <a href="dashboard.php" class="menu-link">
+                            <a href="../dashboard.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fa fa-sitemap" aria-hidden="true"></i>
                                 </div>
@@ -89,7 +89,7 @@
                             </a>
                         </div>
                         <div class="menu-item py-1">
-                            <a href="account.php" class="menu-link">
+                            <a href="../account.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-users" aria-hidden="true"></i>
                                 </div>
@@ -108,7 +108,7 @@
 
                             <div class="menu-submenu">
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Admin" class="menu-link">
+                                    <a href="../concern.php?department000=Admin" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -119,7 +119,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Documentation" class="menu-link">
+                                    <a href="../concern.php?department000=Documentation" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -130,7 +130,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Accounting" class="menu-link">
+                                    <a href="../concern.php?department000=Accounting" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -141,7 +141,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Human Resource" class="menu-link">
+                                    <a href="../concern.php?department000=Human Resource" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -152,7 +152,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Sales" class="menu-link">
+                                    <a href="../concern.php?department000=Sales" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -163,7 +163,7 @@
                                     </a>
                                 </div>
                                 <div class="menu-item">
-                                    <a href="concern.php?department000=Marketing" class="menu-link">
+                                    <a href="../concern.php?department000=Marketing" class="menu-link">
                                         <div class="menu-icon">
                                             <i class="fas fa-building"></i>
                                         </div>
@@ -176,7 +176,7 @@
                             </div>
                         </div>
                         <div class="menu-item py-1">
-                            <a href="search.php" class="menu-link">
+                            <a href="../search.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-users" aria-hidden="true"></i>
                                 </div>
@@ -184,8 +184,8 @@
                             </a>
                         </div>
 
-                        <div class="menu-item py-1 active">
-                            <a href="allData.php" class="menu-link">
+                        <div class="menu-item py-1">
+                            <a href="../allData.php" class="menu-link">
                                 <div class="menu-icon">
                                     <i class="fas fa-database"></i>
                                 </div>
@@ -240,15 +240,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between">
-                    <h1 class="page-header"><span class="fw-bolder text-capitalize"><small> Tables </small></h1>
-                    <div class="col-2">
-                        <select name="selection" id="selection" class="form-control ">
-                            <option value="2">Concern</option>
-                            <option value="1">Job Order</option>
-                        </select>
-                    </div>
-                </div>
 
                 <div class="panel panel-inverse">
 
@@ -263,101 +254,32 @@
                     </div>
                     <div class="panel-body">
                         <table id="data-table-default" class="table table-striped table-bordered align-middle w-100 text-nowrap">
-
-                            <thead class="first" id="concernTableHead">
+                            <thead id="jobOrderTableHead">
                                 <tr>
-                                    <th width="15%" data-orderable="false">Fullname</th>
-                                    <th class="text-nowrap">Email</th>
-                                    <th class="text-nowrap">Department</th>
-                                    <th class="text-nowrap">Concern</th>
-                                    <th class="text-nowrap">Message</th>
-                                    <th class="text-nowrap">Priority</th>
-                                    <th class="text-nowrap">Status</th>
-                                    <th class="text-nowrap">Created</th>
-                                    <th width="15%">Pictures</th>
-                                    <th width="15%">Action</th>
+                                    <th width="5%" data-orderable="false">Fullname</th>
+                                    <th width="5%" class="text-nowrap">Email</th>
+                                    <th width="5%" class="text-nowrap">Department</th>
+                                    <th width="5%" class="text-nowrap">Deadline</th>
+                                    <th width="5%" class="text-nowrap">Priority</th>
+                                    <th width="5%" class="text-nowrap">Status</th>
+                                    <th width="5%" class="text-nowrap">Created</th>
+                                    <th width="5%">Picture</th>
+                                    <th width="5%">Action</th>
                                 </tr>
                             </thead>
-
-                            <thead class="visually-hidden" id="jobOrderTableHead">
-                                <tr>
-                                    <th width="15%" data-orderable="false">Fullname</th>
-                                    <th class="text-nowrap">Department</th>
-                                    <th class="text-nowrap">Email</th>
-                                    <th class="text-nowrap">Deadline</th>
-                                    <th class="text-nowrap">Priority</th>
-                                    <th class="text-nowrap">Status</th>
-                                    <th class="text-nowrap">Created</th>
-                                    <th width="15%">Picture</th>
-                                    <th width="15%">Action</th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="first" id="concernTableBody">
-                                <tr class="odd gradeX" v-for="req of allTotalRequest">
-                                    <td class="truncate">{{ req.name }}</td>
-                                    <td class="truncate">{{ req.email }}</td>
-                                    <td class="truncate">{{ req.department }}</td>
-                                    <td class="truncate">{{ req.concern }}</td>
-                                    <td class="truncate">{{ req.issue }}</td>
-                                    <td class="truncate">{{ req.priority }}</td>
-                                    <td>
-                                        <span :class="req.status == 0 ? 'text-danger' : 'text-primary'">{{ req.status == 0 ? 'Pending' : 'Done'}}</span>
-                                    </td>
-                                    <td>{{ getDateToString(req.created_at) }}</td>
-                                    <td>
-                                        <a href="#ticketid" class="btn col-12" data-bs-toggle="modal" @click="viewPictureRequest(req.request_id)">View</a>
-                                        <div class="modal fade" id="ticketid">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modal-dialogLabel">Pictures for Concern </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body row">
-                                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                                            <div class="carousel-inner">
-                                                                <div v-for="(pic, index) in request_firstpic" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
-                                                                    <img :src="'../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
-                                                                </div>
-                                                            </div>
-                                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Previous</span>
-                                                            </button>
-                                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                                <span class="visually-hidden">Next</span>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-sm btn-danger col-6" @click="getRequestDelete(req.request_id)">Delete</button>
-                                        <a :href="'requestView.php?id='+wordToCode(req.request_id)" class="btn btn-sm btn-info col-6">View</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                            <tbody class="visually-hidden" id="jobOrderTableBody">
-                                <tr class="odd gradeX" v-for="ord of allTotalOrder">
-                                    <td class="truncate" data-orderable="false">{{ ord.name }}</td>
-                                    <td class="truncate">{{ ord.department }}</td>
+                            <tbody id="jobOrderTableBody">
+                                <tr class="odd gradeX" v-for="ord of allOrders">
+                                    <td class="truncate">{{ ord.name }}</td>
                                     <td class="truncate">{{ ord.email }}</td>
+                                    <td class="truncate">{{ ord.department }}</td>
                                     <td class="truncate">{{ getDateToString(ord.deadline) }}</td>
                                     <td class="truncate">{{ ord.priority }}</td>
                                     <td>
                                         <span :class="ord.status == 0 ? 'text-danger' : 'text-primary'">{{ ord.status == 0 ? 'Pending' : 'Done' }}</span>
                                     </td>
-                                    <td>{{ getDateToString(ord.created_at) }}</td>
-                                    <td>
-                                        <a href="#concernid" class="btn col-12" data-bs-toggle="modal" @click="viewPictureOrder(ord.order_id)">View</a>
+                                    <td class="truncate">{{ getDateToString(ord.created_at) }}</td>
+                                    <td class="text-center">
+                                        <a href="#concernid" class="btn col-6" data-bs-toggle="modal" @click="viewPictureOrder(ord.order_id)">View</a>
                                         <div class="modal fade" id="concernid">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
@@ -369,7 +291,7 @@
                                                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                                             <div class="carousel-inner">
                                                                 <div v-for="(pic, index) in request_firstpic" :key="index" class="carousel-item" :class="{ 'active': index === 0 }">
-                                                                    <img :src="'../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
+                                                                    <img :src="'../../../assets/img/employeefiles/' + pic" class="w-100" height="370" alt="Picture">
                                                                 </div>
                                                             </div>
                                                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -391,7 +313,7 @@
                                     </td>
                                     <td class="text-center">
                                         <button class="btn btn-sm btn-danger col-6" @click="getOrderDelete(ord.order_id)">Delete</button>
-                                        <a :href="'orderView.php?id='+wordToCode(ord.order_id)" class="btn btn-sm btn-info col-6">View</a>
+                                        <a :href="'../orderView.php?id='+wordToCode(ord.order_id)" class="btn btn-sm btn-info col-6">View</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -463,49 +385,25 @@
             </div>
         </div>
 
-        <script src="../../assets/js/vendor.min.js"></script>
-        <script src="../../assets/js/color.min.js"></script>
+        <script src="../../../assets/js/vendor.min.js"></script>
+        <script src="../../../assets/js/color.min.js"></script>
 
-        <script src="../../assets/plugin/jquery.dataTables.min.js"></script>
-        <script src="../../assets/plugin/dataTables.bootstrap5.min.js"></script>
-        <script src="../../assets/plugin/dataTables.responsive.min.js"></script>
-        <script src="../../assets/plugin/responsive.bootstrap5.min.js"></script>
-        <script src="../../assets/plugin/table-manage-default.demo.js"></script>
-        <script src="../../assets/plugin/highlight.min.js"></script>
-        <script src="../../assets/plugin/render.highlight.js"></script>
-        <script src="../../vue/vues/axios.js"></script>
-        <script src="../../vue/vues/vue.js"></script>
-        <script src="../../vue/vues/vue.3.js"></script>
-        <script src="../../vue/admin/wiseconcern/concern.js"></script>
+        <script src="../../../assets/plugin/jquery.dataTables.min.js"></script>
+        <script src="../../../assets/plugin/dataTables.bootstrap5.min.js"></script>
+        <script src="../../../assets/plugin/dataTables.responsive.min.js"></script>
+        <script src="../../../assets/plugin/responsive.bootstrap5.min.js"></script>
+        <script src="../../../assets/plugin/table-manage-default.demo.js"></script>
+        <script src="../../../assets/plugin/highlight.min.js"></script>
+        <script src="../../../assets/plugin/render.highlight.js"></script>
+        <script src="../../../vue/vues/axios.js"></script>
+        <script src="../../../vue/vues/vue.js"></script>
+        <script src="../../../vue/vues/vue.3.js"></script>
+        <script src="../../../vue/admin/wiseconcern/concern.js"></script>
         <script>
             function logout() {
-                window.location.href = '../../app/session/logout.php';
+                window.location.href = '../../../app/session/../logout.php';
             }
-            $(document).ready(function() {
-                $('#selection').on('change', function() {
-                    var selectedOption = $(this).val();
 
-                    if (selectedOption == 1) {
-                        $('#concernTableBody').addClass('visually-hidden');
-                        $('#jobOrderTableBody').removeClass('visually-hidden');
-
-                        $('#concernTitle').addClass('visually-hidden');
-                        $('#jobOrderTitle').removeClass('visually-hidden');
-
-                        $('#concernTableHead').addClass('visually-hidden');
-                        $('#jobOrderTableHead').removeClass('visually-hidden');
-                    } else if (selectedOption == 2) {
-                        $('#concernTableBody').removeClass('visually-hidden');
-                        $('#jobOrderTableBody').addClass('visually-hidden');
-
-                        $('#concernTitle').removeClass('visually-hidden');
-                        $('#jobOrderTitle').addClass('visually-hidden');
-
-                        $('#concernTableHead').removeClass('visually-hidden');
-                        $('#jobOrderTableHead').addClass('visually-hidden');
-                    }
-                });
-            });
 
             $('#modal-dialog1').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
